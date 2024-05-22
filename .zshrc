@@ -48,6 +48,7 @@ alias dw="cd $HOME/workspace/"
 alias e="nvim"
 alias erc="nvim $HOME/workspace/dotfiles/.zshrc"
 alias et="rm -rf $HOME/.Trash/*"
+alias lg="lazygit"
 alias ls='eza -lah --group-directories-first'
 alias ls\ -T='eza -lahT --group-directories-first'
 alias p="ipython"
