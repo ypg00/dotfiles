@@ -7,6 +7,7 @@
 # ----- ENV -----
 # export PATH="$HOME/.local/bin:$PATH" # Path to lvim
 # export ZSH="$HOME/.oh-my-zsh"
+export LANG=en_US.UTF-8
 export HOMEBREW_NO_ENV_HINTS=1
 export HOMEBREW_NO_ANALYTICS=1
 
