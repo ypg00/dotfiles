@@ -12,7 +12,7 @@ export HOMEBREW_NO_ENV_HINTS=1
 export HOMEBREW_NO_ANALYTICS=1
 
 # ---- OMZ -----
-zstyle ':omz:update' mode reminder  # omz auto-update behavior
+# zstyle ':omz:update' mode reminder  # omz auto-update behavior
 # DISABLE_MAGIC_FUNCTIONS="true" # Uncomment the following line if pasting URLs and other text is messed up.
 # HIST_STAMPS="yyyy-mm-dd" # "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # PROMPT='%{%F %T%} %m %n%# '
@@ -28,11 +28,13 @@ plugins=( # Standard plugins $ZSH/plugins/ - Custom plugins $ZSH_CUSTOM/plugins/
 )
 
 # ------ SET EDITORS -----
+EDITOR=nvim
+
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
-  export EDITOR='nvim'
-  export VISUAL='nvim'
+  export EDITOR=$EDITOR
+  export VISUAL=$EDITOR
 fi
 
 # ----- SCRIPTS -----
@@ -44,17 +46,18 @@ alias gcb="$HOME/workspace/_scripts/git_clone_bare.sh" # Clones a repo with a ba
 alias dare="cd $HOME/workspace/dare/"
 alias dotfiles="cd $HOME/workspace/dotfiles/"
 alias dw="cd $HOME/workspace/"
-alias e="nvim"
-alias erc="nvim $HOME/workspace/dotfiles/.zshrc"
+alias e=$EDITOR
+alias erc="$EDITOR $HOME/workspace/dotfiles/.zshrc"
 alias et="rm -rf $HOME/.Trash/*"
 alias lg="lazygit"
 alias ls='eza -lah --group-directories-first'
 alias ls\ -T='eza -lahT --group-directories-first'
 alias p="ipython"
 # alias ps="procs"
-alias sl="open -a ScreenSaverEngine"
+# alias slp="open -a ScreenSaverEngine" # abbr
 # alias snowsql=/Applications/SnowSQL.app/Contents/MacOS/snowsql # rather than adding to the path
 alias src="source $HOME/.zshrc"
+# alias ve="cd $HOME/.local/share/virtualenvs/" # abbr, if pipenv is brew installed
 
 # ----- FUNCTIONS ------
 # Homebrew
@@ -70,7 +73,7 @@ daily() {
   local date_format=$(date +"%Y_%m_%d")
   local today="${date_format}.md"
   cd "$daily_dir"
-  nvim +e "$today"
+  $EDITOR +e "$today"
 }
 
 # General Notes
@@ -79,7 +82,7 @@ note() {
   local date_format=$(date +"%Y_%m_%d")
   local today="${date_format}.md"
   cd "$note_dir"
-  nvim +e "$today"
+  $EDITOR +e "$today"
 }
 
 # Questions
@@ -87,11 +90,8 @@ q() {
   local note_dir="$HOME/workspace/_notes/"
   local question_file="questions.md"
   cd "$note_dir"
-  nvim +e "$question_file"
+  $EDITOR +e "$question_file"
 }
-
-# ----- abbr -----
-# source /opt/homebrew/share/zsh-abbr/zsh-abbr.zsh
 
 # ----- asdf -----
 . /opt/homebrew/opt/asdf/libexec/asdf.sh
@@ -108,6 +108,9 @@ set rtp+=/opt/homebrew/opt/fzf # for Vim
 
 # ---- SSH ----
 # eval $(ssh-agent)
+
+# ----- abbr -----
+source /opt/homebrew/share/zsh-abbr/zsh-abbr.zsh
 
 # ----- Starship -----
 # eval "$(starship init zsh)" # Toward end
