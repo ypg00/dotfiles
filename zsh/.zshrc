@@ -10,6 +10,7 @@
 export LANG=en_US.UTF-8
 export HOMEBREW_NO_ENV_HINTS=1
 export HOMEBREW_NO_ANALYTICS=1
+export ABBR_USER_ABBREVIATIONS_FILE=$HOME/workspace/dotfiles/zsh-abbr/abbr
 
 # ---- OMZ -----
 # zstyle ':omz:update' mode reminder  # omz auto-update behavior
@@ -27,7 +28,7 @@ plugins=( # Standard plugins $ZSH/plugins/ - Custom plugins $ZSH_CUSTOM/plugins/
 	# zsh-autosuggestions
 )
 
-# ------ SET EDITORS -----
+# ------ EDITORS -----
 EDITOR=nvim
 
 if [[ -n $SSH_CONNECTION ]]; then
@@ -47,13 +48,13 @@ alias dare="cd $HOME/workspace/dare/"
 alias dotfiles="cd $HOME/workspace/dotfiles/"
 alias dw="cd $HOME/workspace/"
 alias e=$EDITOR
-alias erc="$EDITOR $HOME/workspace/dotfiles/.zshrc"
+alias erc="$EDITOR $HOME/workspace/dotfiles/zsh/.zshrc"
 alias et="rm -rf $HOME/.Trash/*"
 alias lg="lazygit"
 alias ls='eza -lah --group-directories-first'
 alias ls\ -T='eza -lahT --group-directories-first'
 alias p="ipython"
-# alias ps="procs"
+alias path='echo -e ${PATH//:/\\n}' # FIX: not working properly
 # alias slp="open -a ScreenSaverEngine" # abbr
 # alias snowsql=/Applications/SnowSQL.app/Contents/MacOS/snowsql # rather than adding to the path
 alias src="source $HOME/.zshrc"
@@ -93,6 +94,8 @@ q() {
   $EDITOR +e "$question_file"
 }
 
+# ----- APPLICATION SPECIFIC SETTINGS -----
+
 # ----- asdf -----
 . /opt/homebrew/opt/asdf/libexec/asdf.sh
 
@@ -110,7 +113,7 @@ set rtp+=/opt/homebrew/opt/fzf # for Vim
 # eval $(ssh-agent)
 
 # ----- abbr -----
-source /opt/homebrew/share/zsh-abbr/zsh-abbr.zsh
+source /opt/homebrew/share/zsh-abbr/zsh-abbr.zsh # Toward end
 
 # ----- Starship -----
 # eval "$(starship init zsh)" # Toward end
