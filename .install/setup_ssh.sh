@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 echo "===== Setting up SSH keys ====="
+cd $HOME || exit
 
 echo "GitHub docs: https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent"
 echo "Bitbucket docs: https://support.atlassian.com/bitbucket-cloud/docs/set-up-personal-ssh-keys-on-macos/"
@@ -19,7 +20,6 @@ if [[ -z "$key_name" ]]; then
     exit 1
 fi
 
-cd $HOME || exit
 mkdir -p .ssh
 chmod 700 $HOME/.ssh
 
@@ -45,3 +45,5 @@ public_key_path="$HOME/.ssh/$key_name.pub"
 echo -e "\nInstructions on how to add your public key ($public_key_path) to GitHub:"
 echo "https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account"
 echo -e "\nPublic Key:\n$(cat "$public_key_path")"
+pbcopy < $public_key_path
+echo "Public key copied to clipboard"
