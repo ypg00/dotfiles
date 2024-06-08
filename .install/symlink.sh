@@ -16,6 +16,7 @@ create_symlink() {
 }
 
 create_symlink "$DOTFILES/asdf/.global-tool-versions" "$HOME/.tool-versions"
+create_symlink "$DOTFILES/git/.global-gitconfig" "$HOME/.gitconfig"
 create_symlink "$DOTFILES/karabiner" "$CONFIG_DIR/karabiner"
 create_symlink "$DOTFILES/nvim" "$CONFIG_DIR/nvim"
 create_symlink "$DOTFILES/zsh/.zshrc" "$HOME/.zshrc"
