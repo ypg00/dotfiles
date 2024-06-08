@@ -1,2 +1,1 @@
 abbr "envs"="env | sort"
-abbr "path"='echo -e \${PATH//:/\\n}'
