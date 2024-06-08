@@ -5,14 +5,14 @@ echo "===== Setting up SSH keys ====="
 echo "GitHub docs: https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent"
 echo "Bitbucket docs: https://support.atlassian.com/bitbucket-cloud/docs/set-up-personal-ssh-keys-on-macos/"
 
-echo "Enter an email address for the keys:"
+echo "Enter email:"
 read email
 if ! [[ "$email" =~ ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$ ]]; then
-    echo "Invalid email address, try again."
+    echo "Invalid email address."
     exit 1
 fi
 
-echo "Enter a name for the keys (e.g., github-personal or bitbucket-work):"
+echo "Enter name for the keys:"
 read key_name
 if [[ -z "$key_name" ]]; then
     echo "Key name cannot be empty. Exiting."
@@ -41,6 +41,7 @@ ssh_config="$HOME/.ssh/config"
 } >> "$ssh_config"
 chmod 600 "$ssh_config"
 
-echo -e "\nInstructions on how to add your public key ($key_name.pub) to GitHub:"
+public_key_path="$HOME/.ssh/$key_name.pub"
+echo -e "\nInstructions on how to add your public key ($public_key_path) to GitHub:"
 echo "https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account"
-echo -e "\nPublic Key:\n$(cat "$private_key_path.pub")"
+echo -e "\nPublic Key:\n$(cat "$public_key_path")"
