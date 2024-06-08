@@ -57,7 +57,7 @@ defaults -currentHost write com.apple.screensaver idleTime $((5 * 60))
 echo "Screensaver: require password immediately after"
 defaults write com.apple.screensaver askForPassword -int 1
 defaults write com.apple.screensaver askForPasswordDelay -int 0
-local screenshot_location=$HOME/Pictures/Screenshots/
+screenshot_location=$HOME/Pictures/Screenshots/
 echo "Screenshots: save to $screenshot_location"
 mkdir -p $screenshot_location
 defaults write com.apple.screencapture location -string $screenshot_location
@@ -99,8 +99,8 @@ echo "===== Some macOS setting require a restart to take effect ====="
 echo "----- HOMEBREW -----"
 # Install homebrew and packages
 # curl install homebrew
-local brew_casks=("alfred" "bitwarden" "firefox" "iterm2" "karabiner-elements" "microsoft-teams" "slack" "spotify")
-local brew_formulae=("asdf" "bat" "docker" "eza" "httpie" "ipython" "lazygit" "olets/tap/zsh-abbr" "openssh" "ripgrep")
+brew_casks=("alfred" "bitwarden" "firefox" "iterm2" "karabiner-elements" "microsoft-teams" "slack" "spotify")
+brew_formulae=("asdf" "bat" "docker" "eza" "httpie" "ipython" "lazygit" "olets/tap/zsh-abbr" "openssh" "ripgrep")
 
 for cask in "${brew_casks[@]}"; do
     brew install "$cask"
@@ -126,7 +126,7 @@ mkdir -p workspace/_scripts
 
 echo "----- ASDF -----"
 # Install various clis and languages with asdf
-local plugins=("argo" "awscli" "eksctl" "kubectl" "neovim" "nodejs" "python")
+plugins=("argo" "awscli" "eksctl" "kubectl" "neovim" "nodejs" "python")
 
 for plugin in "${plugins[@]}"; do
     echo "Installing latest version of $plugin"
