@@ -2,11 +2,13 @@
 
 sudo -v # Ask for admin password upfront
 
-# curl clone .dotfiles repo
+# TODO: curl clone .dotfiles repo
+DOTFILES=$HOME/.dotfiles
+SCRIPTS=$DOTFILES/.install
 
 # Setup macos settings
-chmod +x $HOME/.dotfiles/.install/macos.sh
-$HOME/.dotfiles/.install/macos.sh
+chmod +x $SCRIPTS/macos.sh
+$SCRIPTS/macos.sh
 
 echo "----- Xcode Command Line Tools (homebrew dependancy) -----"
 # Check if the Xcode Command Line Tools are already installed
@@ -22,42 +24,43 @@ else
   echo "Xcode Command Line Tools are already installed."
 fi
 
+echo "----- HOMEBREW PT1 -----"
 
-echo "----- HOMEBREW -----"
-# Install homebrew and packages
-# curl install homebrew
-brew_casks=("alfred" "bitwarden" "firefox" "iterm2" "karabiner-elements" "microsoft-teams" "slack" "spotify")
-brew_formulae=("asdf" "bat" "docker" "eza" "httpie" "ipython" "lazygit" "olets/tap/zsh-abbr" "openssh" "ripgrep")
+NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-for cask in "${brew_casks[@]}"; do
-    brew install "$cask"
-done
+echo "Configuring Homebrew..."
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> "$HOME/.zshrc"
+eval "$(/opt/homebrew/bin/brew shellenv)"
+brew install firefox
 
-for formula in "${brew_formulae[@]}"; do
-    brew install "$formula"
-done
+echo "----- SSH KEYS -----"
+url="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account"
+open -a "Firefox" "$url"
 
+chmod +x $HOME/.dotfiles/.install/setup_ssh.sh
+$HOME/.dotfiles/.install/setup_ssh.sh
+
+
+echo "----- HOMEBREW PT2 -----"
+# Install remainder of brew packages
+brew bundle --file=$DOTFILES/homebrew/Brewfile
+# Brew installs zsh in the step above, so the following steps are neccesary:
 # Add Hombrew's zsh shell to allowable shells list
 sudo sh -c 'echo /opt/homebrew/bin/zsh >> /etc/shells'
 # Change the default login shell to Homebrew managed zsh
 chsh -s /opt/homebrew/bin/zsh
 
+# Symlink .dotfiles
+chmod +x $SCRIPTS/symlink.sh
+$SCRIPTS/symlink.sh
+
+echo "----- ASDF -----"
+chmod +x $SCRIPTS/asdf.sh
+$SCRIPTS/asdf.sh
 
 echo "----- DIRECTORY TREE -----"
 # Build out the directory tree for the workspace
 cd $HOME
-mkdir -p workspace/dare
 mkdir -p workspace/_dailies
 mkdir -p workspace/_notes
 mkdir -p workspace/_scripts
-
-echo "----- ASDF -----"
-# Install various clis and languages with asdf
-plugins=("argo" "awscli" "eksctl" "kubectl" "neovim" "nodejs" "python")
-
-for plugin in "${plugins[@]}"; do
-    echo "Installing latest version of $plugin"
-    asdf plugin add "$plugin"
-    asdf install "$plugin" latest
-    asdf global "$plugin" latest
-done
