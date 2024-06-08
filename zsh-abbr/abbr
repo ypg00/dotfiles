@@ -1,1 +1,3 @@
 abbr "envs"="env | sort"
+abbr "slp"="open -a ScreenSaverEngine"
+abbr "ve"="cd /Users/ypg/.local/share/virtualenvs/"
