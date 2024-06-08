@@ -139,5 +139,8 @@ source /opt/homebrew/share/zsh-abbr/zsh-abbr.zsh # Toward end
 # ----- Starship -----
 # eval "$(starship init zsh)" # Toward end
 
-# ----- OMZ theme -------
+# ----- OMZ theme -----
 # source ~/powerlevel10k/powerlevel10k.zsh-theme # Toward end
+
+# ----- Homebrew -----
+eval "$(/opt/homebrew/bin/brew shellenv)"
