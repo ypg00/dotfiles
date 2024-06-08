@@ -10,7 +10,7 @@
 export LANG=en_US.UTF-8
 export HOMEBREW_NO_ENV_HINTS=1
 export HOMEBREW_NO_ANALYTICS=1
-export ABBR_USER_ABBREVIATIONS_FILE=$HOME/workspace/dotfiles/zsh-abbr/abbr
+export ABBR_USER_ABBREVIATIONS_FILE=$HOME/.dotfiles/zsh-abbr/abbr
 
 # ---- OMZ -----
 # zstyle ':omz:update' mode reminder  # omz auto-update behavior

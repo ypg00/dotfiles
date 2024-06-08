@@ -25,8 +25,4 @@ create_symlink "$DOTFILES/nvim" "$CONFIG_DIR/nvim"
 # karabiner
 create_symlink "$DOTFILES/karabiner" "$CONFIG_DIR/karabiner"
 
-# abbr
-echo "Updating ABBR_USER_ABBREVIATIONS_FILE env var for zsh-abbr"
-export ABBR_USER_ABBREVIATIONS_FILE=$DOTFILES/zsh-abbr/abbr
-
 # source "$HOME/.zshrc"
