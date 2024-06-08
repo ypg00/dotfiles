@@ -49,6 +49,7 @@ alias dare="cd $HOME/workspace/dare/"
 alias dotfiles="cd $HOME/.dotfiles/"
 alias dw="cd $HOME/workspace/"
 alias e=$EDITOR
+alias envim="$EDITOR $HOME/.dotfiles/nvim/init.lua"
 alias erc="$EDITOR $HOME/.zshrc"
 alias et="rm -rf $HOME/.Trash/*"
 alias lg="lazygit"
