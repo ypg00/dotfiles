@@ -25,4 +25,5 @@ create_symlink "$DOTFILES/nvim" "$CONFIG_DIR/nvim"
 # karabiner
 create_symlink "$DOTFILES/karabiner" "$CONFIG_DIR/karabiner"
 
-# source "$HOME/.zshrc"
+# asdf
+create_symlink "$DOTFILES/asdf/.global-tool-versions" "$HOME/.tool-versions"
