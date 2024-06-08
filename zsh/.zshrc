@@ -44,6 +44,7 @@ alias gcb="$HOME/workspace/_scripts/git_clone_bare.sh" # Clones a repo with a ba
 # alias k8s="$HOME/workspace/_scripts/kube_switch.sh"
 
 # ----- ALIASES ------
+alias biu="brew_install_update"
 alias dare="cd $HOME/workspace/dare/"
 alias dotfiles="cd $HOME/workspace/dotfiles/"
 alias dw="cd $HOME/workspace/"
@@ -66,6 +67,23 @@ bu() {
   brew update &&
   brew upgrade &&
   brew cleanup
+}
+
+brew_install_update() {
+  # Updates Brewfile, adds and commits changes, and pushes to remote each time
+  # a new package is installed with brew
+
+  brew install "$1"
+  # Use a subshell to avoid changing the cwd
+  (
+    cd $HOME/.dotfiles/homebrew/
+    brew bundle dump --describe --force --file=Brewfile
+    if [[ `git status --porcelain` ]]; then
+      git add Brewfile
+      git commit -m "Update Brewfile after installing $1"
+      git push origin main
+    fi
+  )
 }
 
 # Daily Logs
