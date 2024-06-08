@@ -55,11 +55,8 @@ alias lg="lazygit"
 alias ls='eza -lah --group-directories-first'
 alias ls\ -T='eza -lahT --group-directories-first'
 alias p="ipython"
-alias path='echo -e ${PATH//:/\\n}' # FIX: not working properly
-# alias slp="open -a ScreenSaverEngine" # abbr
 # alias snowsql=/Applications/SnowSQL.app/Contents/MacOS/snowsql # rather than adding to the path
 alias src="source $HOME/.zshrc"
-# alias ve="cd $HOME/.local/share/virtualenvs/" # abbr, if pipenv is brew installed
 
 # ----- FUNCTIONS ------
 # Homebrew
