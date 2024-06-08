@@ -30,6 +30,8 @@ brew "pipx"
 brew "ripgrep"
 # Simplified and community-driven man pages
 brew "tldr"
+# UNIX shell (command interpreter)
+brew "zsh"
 # Auto-expanding abbreviations manager for zsh, inspired by fish
 brew "olets/tap/zsh-abbr"
 # Application launcher and productivity software
