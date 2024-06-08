@@ -46,7 +46,7 @@ alias gcb="$HOME/workspace/_scripts/git_clone_bare.sh" # Clones a repo with a ba
 # ----- ALIASES ------
 alias biu="brew_install_update"
 alias dare="cd $HOME/workspace/dare/"
-alias dotfiles="cd $HOME/workspace/dotfiles/"
+alias dotfiles="cd $HOME/.dotfiles/"
 alias dw="cd $HOME/workspace/"
 alias e=$EDITOR
 alias erc="$EDITOR $HOME/.zshrc"
