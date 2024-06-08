@@ -101,6 +101,11 @@ note() {
   $EDITOR +e "$today"
 }
 
+# Print path with each element on a new line
+path() {
+  echo -e "${PATH//:/\\n}"
+}
+
 # Questions
 q() {
   local note_dir="$HOME/workspace/_notes/"
