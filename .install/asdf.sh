@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-echo "===== Installing asdf plugins and setting versions ====="
+echo "----- ASDF ------"
+echo "Installing asdf plugins and setting versions"
 
 # Ensure asdf is sourced
 source_asdf() {
@@ -43,6 +44,6 @@ done < "$TOOL_VERSIONS_FILE"
 echo "===== asdf plugins installed and versions set ====="
 
 # Symlink to .dotfiles version, override original
-ln -sf $TOOL_VERSIONS_FILE $HOME/.tool-versions
+ln -sfv $TOOL_VERSIONS_FILE $HOME/.tool-versions
 # Reshim all to ensure everything is in place
 asdf reshim
