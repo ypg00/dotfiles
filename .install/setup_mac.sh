@@ -2,8 +2,25 @@
 
 sudo -v # Ask for admin password upfront
 
+# curl clone .dotfiles repo
 
+# Setup macos settings
+chmod +x $HOME/.dotfiles/.install/macos.sh
+$HOME/.dotfiles/.install/macos.sh
 
+echo "----- Xcode Command Line Tools (homebrew dependancy) -----"
+# Check if the Xcode Command Line Tools are already installed
+if ! xcode-select -p > /dev/null 2>&1; then
+  # Trigger the installation of Xcode Command Line Tools
+  xcode-select --install
+  echo "Waiting for Xcode Command Line Tools to be installed..."
+  # Wait until the tools are installed
+  until xcode-select -p > /dev/null 2>&1; do
+    sleep 5
+  done
+else
+  echo "Xcode Command Line Tools are already installed."
+fi
 
 
 echo "----- HOMEBREW -----"
