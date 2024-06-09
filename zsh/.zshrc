@@ -1,32 +1,13 @@
-# ------ POWERLEVEL THEME CACHING -----
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-# fi
+#!/usr/bin/env zsh
+
+# ----- Homebrew -----
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # ----- ENV -----
-# export PATH="$HOME/.local/bin:$PATH" # Path to lvim
-# export ZSH="$HOME/.oh-my-zsh"
 export LANG=en_US.UTF-8
 export HOMEBREW_NO_ENV_HINTS=1
 export HOMEBREW_NO_ANALYTICS=1
 export ABBR_USER_ABBREVIATIONS_FILE=$HOME/.dotfiles/zsh-abbr/abbr
-
-# ---- OMZ -----
-# zstyle ':omz:update' mode reminder  # omz auto-update behavior
-# DISABLE_MAGIC_FUNCTIONS="true" # Uncomment the following line if pasting URLs and other text is messed up.
-# HIST_STAMPS="yyyy-mm-dd" # "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# PROMPT='%{%F %T%} %m %n%# '
-# source $ZSH/oh-my-zsh.sh
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# ----- PLUGINS -----
-plugins=( # Standard plugins $ZSH/plugins/ - Custom plugins $ZSH_CUSTOM/plugins/
-	# macos # ofd: open in finder
-	# sudo # esc esc: prefix sudo before last command
-	# web-search
-	# zsh-autosuggestions
-)
 
 # ------ EDITORS -----
 EDITOR=nvim
@@ -70,7 +51,6 @@ bu() {
 brew_install_update() {
   # Updates Brewfile, adds and commits changes, and pushes to remote each time
   # a new package is installed with brew
-
   brew install "$1"
   # Use a subshell to avoid changing the cwd
   (
@@ -124,23 +104,5 @@ q() {
 eval "$(fzf --zsh)"
 set rtp+=/opt/homebrew/opt/fzf # for Vim
 
-# ----- zsh-autosuggestions -----
-# source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-# ----- zsh-completions -----
-# fpath=(/usr/local/share/zsh-completions $fpath)
-
-# ---- SSH ----
-# eval $(ssh-agent)
-
 # ----- abbr -----
 source /opt/homebrew/share/zsh-abbr/zsh-abbr.zsh # Toward end
-
-# ----- Starship -----
-# eval "$(starship init zsh)" # Toward end
-
-# ----- OMZ theme -----
-# source ~/powerlevel10k/powerlevel10k.zsh-theme # Toward end
-
-# ----- Homebrew -----
-eval "$(/opt/homebrew/bin/brew shellenv)"
