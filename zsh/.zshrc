@@ -26,19 +26,8 @@ alias gcb="$HOME/workspace/_scripts/git_clone_bare.sh" # Clones a repo with a ba
 
 # ----- ALIASES ------
 alias biu="brew_install_update"
-alias dare="cd $HOME/workspace/dare/"
-alias dotfiles="cd $HOME/.dotfiles/"
-alias dw="cd $HOME/workspace/"
-alias e=$EDITOR
-alias envim="$EDITOR $HOME/.dotfiles/nvim/init.lua"
-alias erc="$EDITOR $HOME/.zshrc"
-alias et="rm -rf $HOME/.Trash/*"
-alias lg="lazygit"
-alias ls='eza -lah --group-directories-first'
-alias ls\ -T='eza -lahT --group-directories-first'
-alias p="ipython"
+alias ls\ -T='eza -lahT --group-directories-first' # bc of space, must stay alias over abbr
 # alias snowsql=/Applications/SnowSQL.app/Contents/MacOS/snowsql # rather than adding to the path
-alias src="source $HOME/.zshrc"
 
 # ----- FUNCTIONS ------
 # Homebrew
