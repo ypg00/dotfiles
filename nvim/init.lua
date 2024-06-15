@@ -204,6 +204,10 @@ require('lazy').setup({
       }, { mode = 'v' })
     end,
   },
+  {
+    'NoahTheDuke/vim-just',
+    ft = { 'just' },
+  },
 
   -- NOTE: Plugins can specify dependencies.
   --
