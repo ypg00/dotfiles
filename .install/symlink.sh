@@ -2,6 +2,10 @@
 
 # Script to create symlinks to all dotfiles
 
+# NOTE:
+# abbr: env var is set in .zshrc that points to dotfiles
+# asdf: handled by asdf script in order to stay synced
+
 echo "----- Symlinking .dotfiles -----"
 cd $HOME || exit
 CONFIG_DIR="$HOME/.config"
@@ -15,7 +19,6 @@ create_symlink() {
   ln -sfv "$src" "$dest"
 }
 
-create_symlink "$DOTFILES/asdf/.global-tool-versions" "$HOME/.tool-versions"
 create_symlink "$DOTFILES/git/.global-gitconfig" "$HOME/.gitconfig"
 create_symlink "$DOTFILES/karabiner" "$CONFIG_DIR/karabiner"
 create_symlink "$DOTFILES/nvim" "$CONFIG_DIR/nvim"
