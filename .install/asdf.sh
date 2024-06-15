@@ -23,6 +23,8 @@ if [ ! -f "$TOOL_VERSIONS_FILE" ]; then
     exit 1
 fi
 
+# Remove root global .tool-versions file or symlink to avoid conflicts
+rm $SYMLINK_PATH || true
 # Install asdf plugins and set versions
 while read -r line; do
     plugin=$(echo "$line" | awk '{print $1}')
