@@ -22,6 +22,8 @@ brew "git-delta"
 brew "httpie"
 # Interactive computing in Python
 brew "ipython"
+# Handy way to save and run project-specific commands
+brew "just"
 # Simple terminal UI for git commands
 brew "lazygit"
 # OpenBSD freely-licensed SSH connectivity tools
@@ -56,3 +58,5 @@ cask "rectangle"
 cask "slack"
 # Music streaming service
 cask "spotify"
+# Video game digital distribution service
+cask "steam"
