@@ -5,15 +5,15 @@ brew update
 brew upgrade
 
 BREWFILE="$HOME/dotfiles/homebrew/Brewfile"
-TMP_BREWFILE=$(mktemp)
+TMP_BREWFILE="$HOME/dotfiles/homebrew/tmp_brewfile"
+
 brew bundle dump --file="$TMP_BREWFILE"
+installed_packages=($(grep -E '^(brew|cask) ' "$TMP_BREWFILE" | awk '{print $2}' | sed 's/"//g'))
 
-installed_packages_str=$(grep -E '^(brew|cask) ' "$TMP_BREWFILE" | awk '{print $2}')
-required_packages_str=$(grep -E '^(brew|cask) ' "$BREWFILE" | awk '{print $2}')
-
-# Convert strs to arrays
-IFS=$'\n' read -rd '' -a installed_packages <<<"$installed_packages_str"
-IFS=$'\n' read -rd '' -a required_packages <<<"$required_packages_str"
+required_packages=()
+while IFS= read -r line; do
+  required_packages+=("$line")
+done < "$BREWFILE"
 
 packages_to_install=()
 for package in "${required_packages[@]}"; do
@@ -31,4 +31,4 @@ fi
 brew cleanup
 rm -f "$TMP_BREWFILE"
 
-echo "===== Homebrew synchronization complete ======"
+echo "===== Homebrew synchronization complete ====="

@@ -21,5 +21,5 @@ symlink:
 
 sync:
 	{{SYMLINK}}
-	{{ASDF}}
 	{{BREW}}
+	{{ASDF}}
