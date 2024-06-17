@@ -1,6 +1,3 @@
-[user]
-  name = Yuriy Golota
-
 [push]
   default = current
 
@@ -23,3 +20,9 @@
 
 [diff]
   colorMoved = default
+
+[includeIf "hasconfig:remote.*.url:github.com"]
+  path = $HOME/.dotfiles/git/.gitconfig-github
+
+[includeIf "hasconfig:remote.*.url:bitbucket.org"]
+  path = $HOME/.dotfiles/git/.gitconfig-bitbucket
