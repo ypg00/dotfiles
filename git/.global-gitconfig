@@ -1,3 +1,8 @@
+[user]
+	name = Yuriy Golota
+	useConfigOnly = true
+	email = ypgolota@users.noreply.github.com
+
 [push]
 	default = current
 
@@ -20,8 +25,3 @@
 
 [diff]
 	colorMoved = default
-
-[user]
-	name = Yuriy Golota
-	useConfigOnly = true
-	email = ypgolota@users.noreply.github.com
