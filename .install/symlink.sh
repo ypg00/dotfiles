@@ -30,7 +30,6 @@ cp "$DOTFILES/git/gitconfig-global" "$HOME/.gitconfig"
 # Append contents of gitconfig-github to global .gitconfig
 if [ -f "$DOTFILES/git/gitconfig-github" ]; then
   cat "$DOTFILES/git/gitconfig-github" >> "$HOME/.gitconfig"
-  echo "Appended contents of gitconfig-github to $HOME/.gitconfig"
 else
   echo "File $DOTFILES/git/gitconfig-github not found. Skipping append to $HOME/.gitconfig"
 fi
@@ -41,7 +40,6 @@ if [ -d "$HOME/workspace/dare" ]; then
   if [ -f "$DOTFILES/git/gitconfig-bitbucket" ]; then
     cp "$DOTFILES/git/gitconfig-global" "$HOME/workspace/dare/.gitconfig"
     cat "$DOTFILES/git/gitconfig-bitbucket" >> "$HOME/workspace/dare/.gitconfig"
-    echo "Copied gitconfig-global to $HOME/workspace/dare/.gitconfig and appended contents of gitconfig-bitbucket"
   else
     echo "File $DOTFILES/git/gitconfig-bitbucket not found. Skipping append to $HOME/workspace/dare/.gitconfig"
   fi
