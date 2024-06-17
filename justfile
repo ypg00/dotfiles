@@ -2,16 +2,19 @@
 
 DOTFILES := "$HOME/.dotfiles"
 SCRIPTS := DOTFILES / ".install"
-SYMLINK := SCRIPTS / "symlink.sh"
+
 ASDF := SCRIPTS / "asdf.sh"
+SYMLINK := SCRIPTS / "symlink.sh"
 
 default:
 	@just --list
 
+asdf:
+	{{ASDF}}
+
 symlink:
-	chmod u+x {{SYMLINK}}
 	{{SYMLINK}}
 
-asdf:
-	chmod u+x {{ASDF}}
+sync:
+	{{SYMLINK}}
 	{{ASDF}}
