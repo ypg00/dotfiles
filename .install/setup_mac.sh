@@ -23,7 +23,7 @@ else
   echo "Xcode Command Line Tools are already installed."
 fi
 
-echo "----- HOMEBREW PT1 -----"
+# Installing homebrew
 NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 echo "Configuring Homebrew..."
@@ -37,15 +37,9 @@ echo "----- SSH KEYS -----"
 chmod u+x $SCRIPTS/setup_ssh.sh
 $SCRIPTS/setup_ssh.sh
 
-
-echo "----- HOMEBREW PT2 -----"
-# Install remainder of brew packages
-brew bundle --file=$DOTFILES/homebrew/Brewfile
-# Brew installs zsh in the step above, so the following steps are neccesary:
-# Add Hombrew's zsh shell to allowable shells list
-sudo sh -c 'echo /opt/homebrew/bin/zsh >> /etc/shells'
-# Change the default login shell to Homebrew managed zsh
-chsh -s /opt/homebrew/bin/zsh
+# Homebrew package install
+chmod u+x $SCRIPTS/homebrew.sh
+$SCRIPTS/homebrew.sh
 
 # Symlink dotfiles
 chmod u+x $SCRIPTS/symlink.sh
