@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-echo "----- ASDF ------"
+echo "===== ASDF ====="
 echo "Installing asdf plugins and setting versions"
 
 DOTFILES_GLOBAL_VERSION="$HOME/.dotfiles/asdf/.global-tool-versions"
@@ -25,7 +25,7 @@ if [ ! -f "$DOTFILES_GLOBAL_VERSION" ]; then
     exit 1
 fi
 
-# Remove root global .tool-versions file or symlink to avoid conflicts
+# Remove root global .tool-versions file/symlink to avoid conflicts
 rm $SYMLINK_PATH || true
 
 # Install asdf plugins and set versions
