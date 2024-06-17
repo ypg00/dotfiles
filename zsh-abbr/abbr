@@ -2,7 +2,6 @@ abbr "creds"="$EDITOR $HOME/.aws/credentials"
 abbr "dare"="cd $HOME/workspace/dare/"
 abbr "dotfiles"="cd $HOME/.dotfiles/"
 abbr "dw"="cd $HOME/workspace/"
-abbr "e"=$EDITOR
 abbr "envim"="$EDITOR $HOME/.dotfiles/nvim/init.lua"
 abbr "envs"="env | sort"
 abbr "erc"="$EDITOR $HOME/.zshrc"
