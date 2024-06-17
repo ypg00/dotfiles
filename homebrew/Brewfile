@@ -18,6 +18,8 @@ brew "fzf"
 brew "gettext"
 # Syntax-highlighting pager for git and diff output
 brew "git-delta"
+# Smarter Dockerfile linter to validate best practices
+brew "hadolint"
 # User-friendly cURL replacement (command-line HTTP client)
 brew "httpie"
 # Interactive computing in Python
