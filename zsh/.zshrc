@@ -44,7 +44,7 @@ brew_install_update() {
   # Use a subshell to avoid changing the cwd
   (
     cd $HOME/dotfiles/homebrew/
-    brew bundle dump --describe --force --file=Brewfile
+    brew bundle dump --force --file=Brewfile
     if [[ `git status --porcelain` ]]; then
       git add Brewfile
       git commit -m "Update Brewfile after installing $1"
