@@ -15,10 +15,20 @@ return {
   },
   opts = {
     filesystem = {
+      follow_current_file = true,
+      group_empty_dirs = true,
+      hijack_netrw_behavior = 'open_current',
+      use_libuv_file_watcher = true,
       window = {
+        position = 'right',
         mappings = {
           ['\\'] = 'close_window',
         },
+      },
+      filtered_items = {
+        visible = true, -- This will make hidden files visible
+        hide_dotfiles = false, -- This will show dotfiles
+        hide_gitignored = false, -- This will show gitignored files
       },
     },
   },
