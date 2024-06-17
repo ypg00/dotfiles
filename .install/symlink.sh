@@ -14,7 +14,6 @@ mkdir -p "$CONFIG_DIR" # Ensure .config directory exists
 create_symlink() {
   local src="$1"
   local dest="$2"
-  echo "Symlinking $src to $dest"
   ln -sfv "$src" "$dest"
 }
 
