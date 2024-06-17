@@ -70,6 +70,26 @@ vim.opt.scrolloff = 10
 vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
+-- Quick Fix keymaps
+function ToggleQuickfix()
+  local quickfix_open = false
+  for _, win in ipairs(vim.fn.getwininfo()) do
+    if win.quickfix == 1 then
+      quickfix_open = true
+      break
+    end
+  end
+  if quickfix_open then
+    vim.cmd 'cclose'
+  else
+    vim.cmd 'copen'
+  end
+end
+vim.keymap.set('n', '<C-q>', ToggleQuickfix, { desc = 'Toggle Quickfix List' })
+
+-- Custom keymaps
+vim.keymap.set('n', '<Space>c', ':bd<CR>', { desc = 'Close current buffer' })
+
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
