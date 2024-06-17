@@ -44,8 +44,6 @@ if [ -d "$HOME/workspace/dare" ]; then
   else
     echo "File $DOTFILES/git/gitconfig-bitbucket not found. Skipping append to $HOME/workspace/dare/.gitconfig"
   fi
-else
-  echo "Directory $HOME/workspace/dare does not exist. Skipping copy and append."
 fi
 
 echo "===== Finished symlinking to .dotfiles ====="
