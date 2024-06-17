@@ -38,19 +38,21 @@ bu() {
 }
 
 brew_install_update() {
-  # Updates Brewfile, adds and commits changes, and pushes to remote each time
-  # a new package is installed with brew
-  brew install "$1"
-  # Use a subshell to avoid changing the cwd
-  (
-    cd $HOME/dotfiles/homebrew/
-    brew bundle dump --force --file=Brewfile
+  # Updates packages file, adds and commits changes, and pushes to remote
+  local package="$1"
+  brew install "$package"
+  if [[ $? -eq 0 ]]; then
+    pushd $HOME/dotfiles/homebrew/ > /dev/null
+    echo "$package" >> packages
     if [[ `git status --porcelain` ]]; then
-      git add Brewfile
-      git commit -m "Update Brewfile after installing $1"
-      git push origin main
+      git add packages
+      git commit -m "chore: update homebrew packages file after installing $package"
+      git push
     fi
-  )
+    popd > /dev/null
+  else
+    echo "Failed to install $package"
+  fi
 }
 
 # Daily Logs
