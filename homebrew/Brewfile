@@ -22,14 +22,14 @@ brew "git-delta"
 brew "httpie"
 # Interactive computing in Python
 brew "ipython"
+# JSON parser and validator with a CLI
+brew "jsonlint"
 # Handy way to save and run project-specific commands
 brew "just"
 # Simple terminal UI for git commands
 brew "lazygit"
 # OpenBSD freely-licensed SSH connectivity tools
 brew "openssh"
-# Python dependency management tool
-brew "pipenv"
 # Execute binaries from Python packages in isolated environments
 brew "pipx"
 # Search tool like grep and The Silver Searcher
