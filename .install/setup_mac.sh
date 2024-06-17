@@ -7,7 +7,7 @@ DOTFILES=$HOME/.dotfiles
 SCRIPTS=$DOTFILES/.install
 
 # Setup macos settings
-chmod +x $SCRIPTS/macos.sh
+chmod u+x $SCRIPTS/macos.sh
 $SCRIPTS/macos.sh
 
 echo "----- Xcode Command Line Tools (homebrew dependancy) -----"
@@ -25,20 +25,18 @@ else
 fi
 
 echo "----- HOMEBREW PT1 -----"
-
 NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 echo "Configuring Homebrew..."
 echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> "$HOME/.zshrc"
 eval "$(/opt/homebrew/bin/brew shellenv)"
 brew install firefox
+echo "Installed Firefox, opening now ..."
+open -a "Firefox"
 
 echo "----- SSH KEYS -----"
-url="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account"
-open -a "Firefox" "$url"
-
-chmod +x $HOME/.dotfiles/.install/setup_ssh.sh
-$HOME/.dotfiles/.install/setup_ssh.sh
+chmod u+x $SCRIPTS/setup_ssh.sh
+$SCRIPTS/setup_ssh.sh
 
 
 echo "----- HOMEBREW PT2 -----"
@@ -51,11 +49,11 @@ sudo sh -c 'echo /opt/homebrew/bin/zsh >> /etc/shells'
 chsh -s /opt/homebrew/bin/zsh
 
 # Symlink .dotfiles
-chmod +x $SCRIPTS/symlink.sh
+chmod u+x $SCRIPTS/symlink.sh
 $SCRIPTS/symlink.sh
 
-echo "----- ASDF -----"
-chmod +x $SCRIPTS/asdf.sh
+# Syncing to asdf global version
+chmod u+x $SCRIPTS/asdf.sh
 $SCRIPTS/asdf.sh
 
 echo "----- DIRECTORY TREE -----"
@@ -64,3 +62,5 @@ cd $HOME
 mkdir -p workspace/_dailies
 mkdir -p workspace/_notes
 mkdir -p workspace/_scripts
+
+echo "----- Mac setup complete -----"
