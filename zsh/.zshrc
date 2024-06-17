@@ -73,10 +73,11 @@ note() {
   $EDITOR +e "$today"
 }
 
+# NOTE: testing in abbr
 # Print path with each element on a new line
-path() {
-  echo -e "${PATH//:/\\n}"
-}
+# path() {
+#   echo -e "${PATH//:/\\n}"
+# }
 
 # Questions
 q() {
