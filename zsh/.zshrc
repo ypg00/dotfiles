@@ -22,11 +22,11 @@ alias e="$EDITOR"
 
 # ----- SCRIPTS -----
 # alias awsenv="python $HOME/workspace/_scripts/switch_aws_env.py"
+alias biu="brew_install_update"
 alias gcb="$HOME/workspace/_scripts/git_clone_bare.sh" # Clones a repo with a bare git dir and single worktree
 # alias k8s="$HOME/workspace/_scripts/kube_switch.sh"
 
 # ----- ALIASES ------
-alias biu="brew_install_update"
 # alias snowsql=/Applications/SnowSQL.app/Contents/MacOS/snowsql # rather than adding to the path
 
 # ----- FUNCTIONS ------
@@ -72,12 +72,6 @@ note() {
   cd "$note_dir"
   $EDITOR +e "$today"
 }
-
-# NOTE: testing in abbr
-# Print path with each element on a new line
-# path() {
-#   echo -e "${PATH//:/\\n}"
-# }
 
 # Questions
 q() {
