@@ -1,28 +1,27 @@
 [push]
-  default = current
+	default = current
 
 [remote]
-  pushdefault = origin
+	pushdefault = origin
 
 [core]
-  pager = delta
+	pager = delta
 
 [interactive]
-  diffFilter = delta --color-only
+	diffFilter = delta --color-only
 
 [delta]
-  side-by-side = true
-  navigate = true    # use n and N to move between diff sections
-  dark = true
+	side-by-side = true
+	navigate = true    # use n and N to move between diff sections
+	dark = true
 
 [merge]
-  conflictstyle = diff3
+	conflictstyle = diff3
 
 [diff]
-  colorMoved = default
+	colorMoved = default
 
-[includeIf "hasconfig:remote.origin.url:github.com"]
-  path = $HOME/.dotfiles/git/.gitconfig-github
-
-[includeIf "hasconfig:remote.origin.url:bitbucket.org"]
-  path = $HOME/.dotfiles/git/.gitconfig-bitbucket
+[user]
+	name = Yuriy Golota
+	useConfigOnly = true
+	email = ypgolota@users.noreply.github.com
