@@ -4,7 +4,7 @@ echo "===== HOMEBREW ====="
 brew update
 brew upgrade
 
-BREWFILE="$HOME/dotfiles/homebrew/Brewfile"
+BREWFILE="$HOME/dotfiles/homebrew/packages"
 TMP_BREWFILE="$HOME/dotfiles/homebrew/tmp_brewfile"
 
 brew bundle dump --file="$TMP_BREWFILE"
