@@ -1,12 +1,11 @@
 #!/usr/bin/env bash
 
 echo "===== ASDF ====="
-echo "Installing asdf plugins and setting versions"
 
 DOTFILES_GLOBAL_VERSION="$HOME/.dotfiles/asdf/.global-tool-versions"
 SYMLINK_PATH="$HOME/.tool-versions"
+mkdir -p $HOME/.asdf/plugins
 
-# Ensure asdf is sourced
 source_asdf() {
     if [ -f "/opt/homebrew/opt/asdf/libexec/asdf.sh" ]; then
         . "/opt/homebrew/opt/asdf/libexec/asdf.sh"
@@ -15,40 +14,62 @@ source_asdf() {
         exit 1
     fi
 }
+
+# Source asdf if not already available
 if ! command -v asdf &> /dev/null; then
     source_asdf
 fi
 
-# Check if .tool-versions file exists
 if [ ! -f "$DOTFILES_GLOBAL_VERSION" ]; then
     echo ".global-tool-versions file not found in .dotfiles directory."
     exit 1
 fi
 
-# Remove root global .tool-versions file/symlink to avoid conflicts
-rm $SYMLINK_PATH || true
+# Create an array of all added plugins
+if [ -n "$(ls -A $HOME/.asdf/plugins/ 2>/dev/null)" ]; then
+    installed_plugins=($(ls -d $HOME/.asdf/plugins/* | xargs -n 1 basename))
+else
+    installed_plugins=()
+fi
 
-# Install asdf plugins and set versions
+is_plugin_installed() {
+    local plugin=$1
+    for installed_plugin in "${installed_plugins[@]}"; do
+        if [ "$installed_plugin" == "$plugin" ]; then
+            return 0
+        fi
+    done
+    return 1
+}
+
 while read -r line; do
     plugin=$(echo "$line" | awk '{print $1}')
     version=$(echo "$line" | awk '{print $2}')
 
-    # Check if plugin is already installed
-    if ! asdf plugin list | grep -q "^$plugin$"; then
-        echo "Installing $plugin plugin"
-        asdf plugin add "$plugin"
-    else
-        echo "$plugin plugin is already installed"
+    if ! is_plugin_installed "$plugin"; then
+        echo "Adding $plugin"
+        case $plugin in
+            pipenv)
+                # pipenv - needs a URL for installation
+                pipenv_url="https://github.com/and-semakin/asdf-pipenv.git"
+                asdf plugin add "$plugin" "$pipenv_url"
+                ;;
+            *)
+                asdf plugin add "$plugin"
+                ;;
+        esac
     fi
 
-    echo "Setting $plugin version to $version"
-    asdf install "$plugin" "$version"
-    asdf global "$plugin" "$version"
+    if asdf list "$plugin" 2>/dev/null | grep -q "$version"; then
+        continue
+    else
+        echo "Installing $plugin version $version"
+        asdf install "$plugin" "$version"
+    fi
+
 done < "$DOTFILES_GLOBAL_VERSION"
 
-# Symlink to .dotfiles version, override original
 ln -sfv $DOTFILES_GLOBAL_VERSION $SYMLINK_PATH
-# Reshim all to ensure everything is in place
 asdf reshim
 
-echo "===== asdf plugins installed and versions set ====="
+echo "===== asdf configuration complete ====="
