@@ -7,7 +7,7 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 export LANG=en_US.UTF-8
 export HOMEBREW_NO_ENV_HINTS=1
 export HOMEBREW_NO_ANALYTICS=1
-export ABBR_USER_ABBREVIATIONS_FILE=$HOME/.dotfiles/zsh-abbr/abbr
+export ABBR_USER_ABBREVIATIONS_FILE=$HOME/dotfiles/zsh-abbr/abbr
 
 # ------ EDITORS -----
 EDITOR=nvim
@@ -43,7 +43,7 @@ brew_install_update() {
   brew install "$1"
   # Use a subshell to avoid changing the cwd
   (
-    cd $HOME/.dotfiles/homebrew/
+    cd $HOME/dotfiles/homebrew/
     brew bundle dump --describe --force --file=Brewfile
     if [[ `git status --porcelain` ]]; then
       git add Brewfile
