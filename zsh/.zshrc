@@ -12,12 +12,13 @@ export ABBR_USER_ABBREVIATIONS_FILE=$HOME/.dotfiles/zsh-abbr/abbr
 # ------ EDITORS -----
 EDITOR=nvim
 
-if [[ -n $SSH_CONNECTION ]]; then
+if [[ -n ${SSH_CONNECTION:-} ]]; then
   export EDITOR='vim'
 else
   export EDITOR=$EDITOR
   export VISUAL=$EDITOR
 fi
+alias e="$EDITOR"
 
 # ----- SCRIPTS -----
 # alias awsenv="python $HOME/workspace/_scripts/switch_aws_env.py"
@@ -26,7 +27,6 @@ alias gcb="$HOME/workspace/_scripts/git_clone_bare.sh" # Clones a repo with a ba
 
 # ----- ALIASES ------
 alias biu="brew_install_update"
-alias ls\ -T='eza -lahT --group-directories-first' # bc of space, must stay alias over abbr
 # alias snowsql=/Applications/SnowSQL.app/Contents/MacOS/snowsql # rather than adding to the path
 
 # ----- FUNCTIONS ------
