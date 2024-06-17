@@ -21,8 +21,8 @@
 [diff]
   colorMoved = default
 
-[includeIf "hasconfig:remote.*.url:github.com"]
+[includeIf "hasconfig:remote.origin.url:github.com"]
   path = $HOME/.dotfiles/git/.gitconfig-github
 
-[includeIf "hasconfig:remote.*.url:bitbucket.org"]
+[includeIf "hasconfig:remote.origin.url:bitbucket.org"]
   path = $HOME/.dotfiles/git/.gitconfig-bitbucket
