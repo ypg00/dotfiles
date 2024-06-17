@@ -4,6 +4,7 @@ DOTFILES := "$HOME/dotfiles"
 SCRIPTS := DOTFILES / ".install"
 
 ASDF := SCRIPTS / "asdf.sh"
+BREW := SCRIPTS / "homebrew.sh"
 SYMLINK := SCRIPTS / "symlink.sh"
 
 default:
@@ -12,9 +13,13 @@ default:
 asdf:
 	{{ASDF}}
 
+brew: 
+	{{BREW}}
+
 symlink:
 	{{SYMLINK}}
 
 sync:
 	{{SYMLINK}}
 	{{ASDF}}
+	{{BREW}}
