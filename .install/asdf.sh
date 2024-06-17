@@ -2,7 +2,7 @@
 
 echo "===== ASDF ====="
 
-DOTFILES_GLOBAL_VERSION="$HOME/.dotfiles/asdf/.global-tool-versions"
+DOTFILES_GLOBAL_VERSION="$HOME/dotfiles/asdf/.global-tool-versions"
 SYMLINK_PATH="$HOME/.tool-versions"
 mkdir -p $HOME/.asdf/plugins
 
@@ -21,7 +21,7 @@ if ! command -v asdf &> /dev/null; then
 fi
 
 if [ ! -f "$DOTFILES_GLOBAL_VERSION" ]; then
-    echo ".global-tool-versions file not found in .dotfiles directory."
+    echo ".global-tool-versions file not found in dotfiles directory."
     exit 1
 fi
 

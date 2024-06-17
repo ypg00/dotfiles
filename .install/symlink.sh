@@ -6,9 +6,9 @@
 # abbr: env var is set in .zshrc that points to dotfiles
 # asdf: handled by asdf script in order to stay synced
 
-echo "===== Symlinking .dotfiles ====="
+echo "===== Symlinking dotfiles ====="
 CONFIG_DIR="$HOME/.config"
-DOTFILES="$HOME/.dotfiles"
+DOTFILES="$HOME/dotfiles"
 mkdir -p "$CONFIG_DIR" # Ensure .config directory exists
 
 create_symlink() {
@@ -47,4 +47,4 @@ if [ -d "$HOME/workspace/dare" ]; then
   fi
 fi
 
-echo "===== Finished symlinking to .dotfiles ====="
+echo "===== Finished symlinking to dotfiles ====="

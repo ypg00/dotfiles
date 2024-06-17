@@ -69,7 +69,7 @@ echo "Public key copied to clipboard"
 echo "Would you like to setup another SSH key? [y/n]"
 read -r run_again
 if [[ "$run_again" == "y" ]]; then
-    "$HOME/.dotfiles/.install/setup_ssh.sh"
+    "$HOME/dotfiles/.install/setup_ssh.sh"
 else
     echo "===== Finish creating SSH key(s) ====="
     exit 0

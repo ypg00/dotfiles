@@ -1,6 +1,6 @@
 # Docs: https://github.com/casey/just
 
-DOTFILES := "$HOME/.dotfiles"
+DOTFILES := "$HOME/dotfiles"
 SCRIPTS := DOTFILES / ".install"
 
 ASDF := SCRIPTS / "asdf.sh"

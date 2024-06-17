@@ -1,4 +1,4 @@
-# .dotfiles
+# dotfiles
 
 ## Tools
 - Editor: nvim
@@ -7,7 +7,7 @@
 - Browser: Firefox
 
 ## Scripts
-- Installation scripts are located in .dotfiles/.install/
-- .dotfiles/.install/setup_mac.sh will call all the others scripts
-- To just symlink the config files, run .dotfiles/.install/symlink.sh
+- Installation scripts are located in dotfiles/.install/
+- dotfiles/.install/setup_mac.sh will call all the others scripts
+- To just symlink the config files, run dotfiles/.install/symlink.sh
 

@@ -2,8 +2,7 @@
 
 sudo -v # Ask for admin password upfront
 
-# TODO: curl clone .dotfiles repo
-DOTFILES=$HOME/.dotfiles
+DOTFILES=$HOME/dotfiles
 SCRIPTS=$DOTFILES/.install
 
 # Setup macos settings
@@ -48,7 +47,7 @@ sudo sh -c 'echo /opt/homebrew/bin/zsh >> /etc/shells'
 # Change the default login shell to Homebrew managed zsh
 chsh -s /opt/homebrew/bin/zsh
 
-# Symlink .dotfiles
+# Symlink dotfiles
 chmod u+x $SCRIPTS/symlink.sh
 $SCRIPTS/symlink.sh
 
