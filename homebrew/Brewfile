@@ -1,64 +1,32 @@
 tap "homebrew/bundle"
 tap "olets/tap"
-# Extendable version manager with support for Ruby, Node.js, Erlang & more
 brew "asdf"
-# Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
-# Console Matrix
 brew "cmatrix"
-# Pack, ship and run any application as a lightweight container
 brew "docker"
-# Modern, maintained replacement for ls
 brew "eza"
-# Simple, fast and user-friendly alternative to find
 brew "fd"
-# Command-line fuzzy finder written in Go
 brew "fzf"
-# GNU internationalization (i18n) and localization (l10n) library
 brew "gettext"
-# Syntax-highlighting pager for git and diff output
 brew "git-delta"
-# Smarter Dockerfile linter to validate best practices
 brew "hadolint"
-# User-friendly cURL replacement (command-line HTTP client)
 brew "httpie"
-# Interactive computing in Python
 brew "ipython"
-# JSON parser and validator with a CLI
 brew "jsonlint"
-# Handy way to save and run project-specific commands
 brew "just"
-# Simple terminal UI for git commands
 brew "lazygit"
-# OpenBSD freely-licensed SSH connectivity tools
-brew "openssh"
-# Execute binaries from Python packages in isolated environments
-brew "pipx"
-# Search tool like grep and The Silver Searcher
-brew "ripgrep"
-# Simplified and community-driven man pages
-brew "tldr"
-# UNIX shell (command interpreter)
-brew "zsh"
-# Auto-expanding abbreviations manager for zsh, inspired by fish
 brew "olets/tap/zsh-abbr"
-# Application launcher and productivity software
+brew "openssh"
+brew "pipx"
+brew "ripgrep"
+brew "tldr"
+brew "zsh"
 cask "alfred"
-# Desktop password and login vault
 cask "bitwarden"
-# Web browser
 cask "firefox"
-# Terminal emulator as alternative to Apple's Terminal app
 cask "iterm2"
-# Keyboard customiser
 cask "karabiner-elements"
-# App to write, plan, collaborate, and get organised
 cask "notion"
-# Move and resize windows using keyboard shortcuts or snap areas
 cask "rectangle"
-# Team communication and collaboration software
 cask "slack"
-# Music streaming service
 cask "spotify"
-# Video game digital distribution service
-cask "steam"
