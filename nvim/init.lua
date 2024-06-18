@@ -313,6 +313,7 @@ require('lazy').setup({
           hidden = true, -- Include hidden files and directories
         }
       end, { desc = '[S]earch [F]iles' })
+      vim.keymap.set('n', '<leader>sc', ':Telescope git_bcommits<cr>', { desc = '[S]earch [C]ommits' })
       vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
       vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
       vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
@@ -326,7 +327,7 @@ require('lazy').setup({
         -- You can pass additional configuration to Telescope to change the theme, layout, etc.
         builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
           winblend = 10,
-          previewer = false,
+          previewer = true,
         })
       end, { desc = '[/] Fuzzily search in current buffer' })
 
@@ -808,6 +809,16 @@ require('lazy').setup({
       --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
       --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
       --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+    end,
+  },
+  {
+    'folke/persistence.nvim',
+    event = 'BufReadPre', -- this will only start session saving when an actual file was opened
+    config = function()
+      require('persistence').setup {
+        dir = vim.fn.expand(vim.fn.stdpath 'config' .. '/session/'),
+        options = { 'buffers', 'curdir', 'tabpages', 'winsize' },
+      }
     end,
   },
 
