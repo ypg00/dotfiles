@@ -9,6 +9,14 @@ export HOMEBREW_NO_ENV_HINTS=1
 export HOMEBREW_NO_ANALYTICS=1
 export ABBR_USER_ABBREVIATIONS_FILE=$HOME/dotfiles/zsh-abbr/abbr
 
+# ----- OMZ -----
+export ZSH="$HOME/.oh-my-zsh"
+ZSH_THEME="lambda"
+zstyle ':omz:update' mode reminder
+plugins=(git)
+zstyle ':omz:*' aliases no # Skip all aliases, in lib files and enabled plugins
+source $ZSH/oh-my-zsh.sh
+
 # ------ EDITORS -----
 EDITOR=nvim
 
