@@ -11,23 +11,15 @@ default:
 	@just --list
 
 asdf:
-	cd $HOME/dotfiles/
-	git pull
 	{{ASDF}}
 
 brew: 
-	cd $HOME/dotfiles/
-	git pull
 	{{BREW}}
 
 symlink:
-	cd $HOME/dotfiles/
-	git pull
 	{{SYMLINK}}
 
 sync:
-	cd $HOME/dotfiles/
-	git pull
 	{{SYMLINK}}
 	{{BREW}}
 	{{ASDF}}
