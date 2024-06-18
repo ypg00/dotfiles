@@ -9,13 +9,32 @@ export HOMEBREW_NO_ENV_HINTS=1
 export HOMEBREW_NO_ANALYTICS=1
 export ABBR_USER_ABBREVIATIONS_FILE=$HOME/dotfiles/zsh-abbr/abbr
 
-# ----- OMZ -----
-export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="lambda"
-zstyle ':omz:update' mode reminder
-plugins=(git)
-zstyle ':omz:*' aliases no # Skip all aliases, in lib files and enabled plugins
-source $ZSH/oh-my-zsh.sh
+# ----- PROMPT ------
+RESET="%{$(tput sgr0)%}"
+RED="%{$(tput setaf 1)%}"
+GREEN="%{$(tput setaf 2)%}"
+YELLOW="%{$(tput setaf 3)%}"
+BLUE="%{$(tput setaf 4)%}"
+MAGENTA="%{$(tput setaf 5)%}"
+CYAN="%{$(tput setaf 6)%}"
+WHITE="%{$(tput setaf 7)%}"
+
+function git_prompt_info() {
+  local branch
+  branch=$(git symbolic-ref HEAD 2>/dev/null || git describe --tags --always 2>/dev/null)
+  if [ -n "$branch" ]; then
+    echo "${GREEN}($(echo $branch | sed 's/refs\/heads\///'))${RESET}"
+  fi
+}
+PROMPT='%{$CYAN%}%~ $(git_prompt_info)%{$RESET%}
+%{$RESET%}λ '
+# Ensure the prompt is updated after each command
+function zsh_prompt_command() {
+  PS1="%{$CYAN%}%~ $(git_prompt_info)%{$RESET%}
+%{$RESET%}λ "
+}
+# Set the prompt command hook
+precmd_functions+=(zsh_prompt_command)
 
 # ------ EDITORS -----
 EDITOR=nvim
