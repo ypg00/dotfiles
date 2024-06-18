@@ -1,1 +1,0 @@
-/Users/ypg/dotfiles/zsh/.zshrc
