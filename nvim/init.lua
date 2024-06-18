@@ -90,6 +90,9 @@ vim.keymap.set('n', '<C-q>', ToggleQuickfix, { desc = 'Toggle Quickfix List' })
 -- Custom keymaps
 vim.keymap.set('n', '<Space>c', ':bd<CR>', { desc = 'Close current buffer' })
 vim.keymap.set('n', '<leader>gl', ':Git blame_line<CR>', { desc = 'Git blame current line' })
+vim.keymap.set('n', '<Space>rs', function()
+  require('persistence').load()
+end, { noremap = true, silent = true, desc = 'Restore Session' })
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
