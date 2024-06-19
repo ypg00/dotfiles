@@ -22,6 +22,7 @@ create_symlink() {
 
 create_symlink "$DOTFILES/justfile" "$HOME/justfile"
 create_symlink "$DOTFILES/karabiner" "$CONFIG_DIR/karabiner"
+create_symlink "$DOTFILES/kitty/kitty.conf" "$CONFIG_DIR/kitty/kitty.conf"
 create_symlink "$DOTFILES/nvim" "$CONFIG_DIR/nvim"
 create_symlink "$DOTFILES/zsh/.zshrc" "$HOME/.zshrc"
 
