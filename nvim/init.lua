@@ -9,9 +9,12 @@ vim.g.have_nerd_font = true
 -- See `:help vim.opt`
 --  For more options, you can see `:help option-list`
 
--- Make line numbers default
+-- Line numbers
 vim.opt.number = false
 vim.opt.relativenumber = false
+
+-- Do not wrap text onto what looks like a new line
+vim.opt.wrap = false
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
