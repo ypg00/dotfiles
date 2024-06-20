@@ -4,7 +4,7 @@ echo "===== HOMEBREW ====="
 brew update
 brew upgrade
 
-BREWFILE="$HOME/dotfiles/homebrew/packages"
+PACKAGES="$HOME/dotfiles/homebrew/packages"
 TMP_BREWFILE="$HOME/dotfiles/homebrew/tmp_brewfile"
 
 brew bundle dump --file="$TMP_BREWFILE"
@@ -13,7 +13,7 @@ installed_packages=($(grep -E '^(brew|cask) ' "$TMP_BREWFILE" | awk '{print $2}'
 required_packages=()
 while IFS= read -r line; do
   required_packages+=("$line")
-done < "$BREWFILE"
+done < "$PACKAGES"
 
 packages_to_install=()
 for package in "${required_packages[@]}"; do
