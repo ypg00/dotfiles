@@ -181,6 +181,54 @@ require('lazy').setup({
   --  This is equivalent to:
   --    require('Comment').setup({})
 
+  -- Quickfix list preview window
+  {
+    'kevinhwang91/nvim-bqf',
+    config = function()
+      require('bqf').setup {
+        auto_enable = true,
+        preview = {
+          auto_preview = true,
+          border_chars = { '┌', '─', '┐', '│', '┘', '─', '└', '│' },
+          border = 'single',
+          show_title = true,
+          show_scroll_bar = true,
+          delay_syntax = 50,
+          win_height = 15,
+          win_vheight = 15,
+          winblend = 10, -- Required field for transparency of the window
+          wrap = false,
+          buf_label = true, -- Optional field for buffer label
+          should_preview_cb = function(bufnr)
+            -- Optional callback function for preview conditions
+            local fsize = vim.fn.getfsize(vim.api.nvim_buf_get_name(bufnr))
+            return fsize < 100 * 1024 -- Only preview if file size is less than 100KB
+          end,
+        },
+        magic_window = true,
+        auto_resize_height = true,
+        func_map = {
+          open = 'o',
+          openc = 'O',
+          drop = 'd',
+          split = 's',
+          tab = 't',
+          tabc = 'T',
+          ptogglemode = 'z,',
+          stoggleup = 'K',
+          stoggledown = 'J',
+          stogglevm = 'X',
+        },
+        filter = {
+          fzf = {
+            action_for = { ['ctrl-s'] = 'split', ['ctrl-t'] = 'tab', ['ctrl-v'] = 'vsplit' },
+            extra_opts = { '--bind', 'ctrl-o:toggle-all', '--prompt', '> ' },
+          },
+        },
+      }
+    end,
+  },
+
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
 
@@ -275,6 +323,7 @@ require('lazy').setup({
       -- Useful for getting pretty icons, but requires a Nerd Font.
       { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
     },
+
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
       -- it can fuzzy find! It's more than just a "file finder", it can search
@@ -621,7 +670,6 @@ require('lazy').setup({
       },
     },
   },
-
   { -- Autocompletion
     'hrsh7th/nvim-cmp',
     event = 'InsertEnter',
