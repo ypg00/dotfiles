@@ -33,7 +33,6 @@ brew install firefox
 echo "Installed Firefox, opening now ..."
 open -a "Firefox"
 
-echo "----- SSH KEYS -----"
 chmod u+x $SCRIPTS/setup_ssh.sh
 $SCRIPTS/setup_ssh.sh
 
