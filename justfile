@@ -25,6 +25,4 @@ sync:
 	{{ASDF}}
 
 time:
-    @echo "Singapore      (SGT):   $(TZ="Asia/Singapore" date +"%d/%m/%Y %H:%M:%S")"
-    @echo "Raleigh         (ET):   $(TZ="America/New_York" date +"%d/%m/%Y %H:%M:%S")"
-    @echo "Heilbronn (CET/CEST):   $(TZ="Europe/Berlin" date +"%d/%m/%Y %H:%M:%S")"
+	@$HOME/dotfiles/.scripts/time.sh
