@@ -10,8 +10,16 @@ vim.g.have_nerd_font = true
 --  For more options, you can see `:help option-list`
 
 -- Line numbers
-vim.opt.number = false
-vim.opt.relativenumber = false
+local function toggle_numbers()
+  if vim.opt.number:get() then
+    vim.opt.number = false
+    vim.opt.relativenumber = false
+  else
+    vim.opt.number = true
+    vim.opt.relativenumber = true
+  end
+end
+vim.keymap.set('n', '<Space>n', toggle_numbers, { desc = 'Toggle line [N]umbers' })
 
 -- Do not wrap text onto what looks like a new line
 vim.opt.wrap = false
