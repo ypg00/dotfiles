@@ -4,10 +4,10 @@
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # ----- ENV -----
-export LANG=en_US.UTF-8
-export HOMEBREW_NO_ENV_HINTS=1
-export HOMEBREW_NO_ANALYTICS=1
 export ABBR_USER_ABBREVIATIONS_FILE=$HOME/dotfiles/zsh-abbr/abbr
+export HOMEBREW_NO_ANALYTICS=1
+export HOMEBREW_NO_ENV_HINTS=1
+export LANG=en_US.UTF-8
 
 # ----- PROMPT ------
 RESET="%{$(tput sgr0)%}"
@@ -26,15 +26,20 @@ function git_prompt_info() {
     echo "${GREEN}($(echo $branch | sed 's/refs\/heads\///'))${RESET}"
   fi
 }
-PROMPT='%{$CYAN%}%~ $(git_prompt_info)%{$RESET%}
-%{$RESET%}λ '
-# Ensure the prompt is updated after each command
+
 function zsh_prompt_command() {
+  local date_time
+  date_time=$(date +"%d/%m/%Y | %H:%M:%S")
+  RPROMPT="%{$CYAN%}${date_time}%{$RESET%}"
   PS1="%{$CYAN%}%~ $(git_prompt_info)%{$RESET%}
-%{$RESET%}λ "
+%{$RED%}λ%{$RESET%} "
 }
-# Set the prompt command hook
+
+# Ensure the prompt is updated after each command
 precmd_functions+=(zsh_prompt_command)
+
+# Initial call to set the prompt
+zsh_prompt_command
 
 # ------ EDITORS -----
 EDITOR=nvim
@@ -45,6 +50,7 @@ else
   export EDITOR=$EDITOR
   export VISUAL=$EDITOR
 fi
+
 alias e="$EDITOR"
 
 # ----- SCRIPTS -----
@@ -54,6 +60,7 @@ alias gcb="$HOME/workspace/_scripts/git_clone_bare.sh" # Clones a repo with a ba
 alias k8s="$HOME/workspace/_scripts/kube_switch.sh"
 
 # ----- FUNCTIONS ------
+
 # Homebrew
 bu() {
   brew update &&
