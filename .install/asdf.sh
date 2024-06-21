@@ -72,7 +72,7 @@ done < "$DOTFILES_GLOBAL_VERSION"
 if [ -e "$SYMLINK_PATH" ] || [ -L "$SYMLINK_PATH" ]; then
     rm -rf "$dest"
 fi
-ln -sfv $DOTFILES_GLOBAL_VERSION $SYMLINK_PATH
+ln -sf $DOTFILES_GLOBAL_VERSION $SYMLINK_PATH
 asdf reshim
 
 echo "===== asdf configuration complete ====="

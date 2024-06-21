@@ -17,7 +17,7 @@ create_symlink() {
   if [ -e "$dest" ] || [ -L "$dest" ]; then
     rm -rf "$dest"
   fi
-  ln -sfv "$src" "$dest"
+  ln -sf "$src" "$dest"
 }
 
 create_symlink "$DOTFILES/justfile" "$HOME/justfile"
