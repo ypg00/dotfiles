@@ -32,6 +32,8 @@ echo "Finder: use list view in all windows by default"
 defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv" # view modes: `icnv`, `clmv`, `glyv`
 # echo "Finder: disable the warning before emptying the Trash"
 # defaults write com.apple.finder WarnOnEmptyTrash -bool false
+echo "Finder: show hidden files"
+defaults write com.apple.finder AppleShowAllFiles -bool true
 
 echo "Dock: wipe all (default) app icons from the Dock"
 defaults write com.apple.dock persistent-apps -array
@@ -55,7 +57,7 @@ defaults -currentHost write com.apple.screensaver idleTime $((5 * 60))
 echo "Screensaver: require password immediately after"
 defaults write com.apple.screensaver askForPassword -int 1
 defaults write com.apple.screensaver askForPasswordDelay -int 0
-screenshot_location=$HOME/Pictures/Screenshots/
+screenshot_location=$HOME/Documents/Screenshots/
 echo "Screenshots: save to $screenshot_location"
 mkdir -p $screenshot_location
 defaults write com.apple.screencapture location -string $screenshot_location
