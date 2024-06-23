@@ -20,8 +20,8 @@ symlink:
 	{{SYMLINK}}
 
 sync:
-	{{SYMLINK}}
 	{{BREW}}
+	{{SYMLINK}}
 	{{ASDF}}
 
 time:
