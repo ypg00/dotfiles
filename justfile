@@ -16,6 +16,10 @@ asdf:
 brew: 
 	{{BREW}}
 
+configmap:
+	kubectl get configmap -n kube-system -o yaml > $HOME/workspace/dare/kubeconfigmap.yaml
+	$EDITOR $HOME/workspace/dare/kubeconfigmap.yaml
+
 symlink:
 	{{SYMLINK}}
 
