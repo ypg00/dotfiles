@@ -54,10 +54,10 @@ fi
 alias e="$EDITOR"
 
 # ----- SCRIPTS -----
-alias awsenv="python $HOME/workspace/_scripts/switch_aws_env.py"
+alias awsenv="python $HOME/dotfiles/.scripts/switch_aws_env.py"
 alias biu="brew_install_update"
-alias gcb="$HOME/workspace/_scripts/git_clone_bare.sh" # Clones a repo with a bare git dir and single worktree
-alias k8s="$HOME/workspace/_scripts/kube_switch.sh"
+alias gcb="$HOME/dotfiles/.scripts/git_clone_bare.sh" # Clones a repo with a bare git dir and single worktree
+alias k8s="$HOME/dotfiles/.scripts/kube_switch.sh"
 
 # ----- FUNCTIONS ------
 
