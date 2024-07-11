@@ -33,6 +33,7 @@ cd "$basename"
 
 # When cloning only fetch the main single branch to local, fetch all remotes
 git clone --bare --single-branch "$url" .git-bare
+echo "gitdir: ./.git-bare" > .git
 
 # Explicitly sets the remote origin fetch so we can fetch remote branches
 git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
