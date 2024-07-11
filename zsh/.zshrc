@@ -8,6 +8,7 @@ export ABBR_USER_ABBREVIATIONS_FILE=$HOME/dotfiles/zsh-abbr/abbr
 export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_NO_ENV_HINTS=1
 export LANG=en_US.UTF-8
+export PATH="$PATH:/Users/ypg/.local/bin" # Poetry
 
 # ----- PROMPT ------
 RESET="%{$(tput sgr0)%}"
