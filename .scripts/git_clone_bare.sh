@@ -15,7 +15,6 @@ set -e
 
 url=$1
 basename=${url##*/}
-# name=${2:-${basename%.*}}
 
 mkdir $basename
 cd "$basename"
@@ -42,7 +41,6 @@ git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
 git fetch origin
 
 # Create main worktree
-git worktree add ./dev-tree dev
+git worktree add ./dev-tree main
 
-# Create alt worktree
-git worktree add ./alt-tree -b alt-branch
+rm .git
