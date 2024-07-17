@@ -24,6 +24,12 @@ vim.keymap.set('n', '<Space>n', toggle_numbers, { desc = 'Toggle line [N]umbers'
 -- Do not wrap text onto what looks like a new line
 vim.opt.wrap = false
 
+-- Tab == 4 spaces
+-- vim.opt.tabstop = 8
+-- vim.opt.softtabstop = 4
+-- vim.opt.shiftwidth = 4
+-- vim.opt.expandtab = false
+
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
 
