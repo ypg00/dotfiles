@@ -41,6 +41,6 @@ git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
 git fetch origin
 
 # Create main worktree
-git worktree add ./dev-tree main
+git worktree add ./dev-tree dev
 
 rm .git
