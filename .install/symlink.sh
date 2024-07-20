@@ -9,7 +9,9 @@
 echo "===== Symlinking dotfiles ====="
 CONFIG_DIR="$HOME/.config"
 DOTFILES="$HOME/dotfiles"
-mkdir -p "$CONFIG_DIR" # Ensure .config directory exists
+
+# Ensure .config directory exists
+mkdir -p "$CONFIG_DIR"
 
 create_symlink() {
   local src="$1"
@@ -22,8 +24,9 @@ create_symlink() {
 
 create_symlink "$DOTFILES/justfile" "$HOME/justfile"
 create_symlink "$DOTFILES/karabiner" "$CONFIG_DIR/karabiner"
-create_symlink "$DOTFILES/kitty/kitty.conf" "$CONFIG_DIR/kitty/kitty.conf"
+create_symlink "$DOTFILES/kitty" "$CONFIG_DIR/kitty"
 create_symlink "$DOTFILES/nvim" "$CONFIG_DIR/nvim"
+create_symlink "$DOTFILES/pypoetry" "$CONFIG_DIR/pypoetry"
 create_symlink "$DOTFILES/zsh/.zshrc" "$HOME/.zshrc"
 
 
