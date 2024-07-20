@@ -31,8 +31,6 @@ sync:
 time:
 	@$HOME/dotfiles/.scripts/time.sh
 
-venv:
-	python -m venv venv && \
-	source venv/bin/activate && \
-	pip install -r requirements.txt
-
+ve:
+	poetry shell
+	poetry install --no-root
