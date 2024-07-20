@@ -24,10 +24,8 @@ cd "$basename"
 # Plan is to create worktrees as siblings of this directory.
 # Example targeted structure:
 # .git-bare
-# main
-# new-awesome-feature
-# hotfix-bug-12
-# ...
+# dev-tree
+# alt-tree
 
 
 # When cloning only fetch the main single branch to local, fetch all remotes
@@ -43,4 +41,11 @@ git fetch origin
 # Create main worktree
 git worktree add ./dev-tree dev
 
-rm .git
+rm .git # rm .git file since a work-tree has been added
+
+# Append each item in the IGNORE array to the exclude file
+IGNORE=(".venv" "poetry.lock")
+exclude_file=".git-bare/info/exclude"
+for item in "${IGNORE[@]}"; do
+  echo "$item" >> "$exclude_file"
+done
