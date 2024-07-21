@@ -1,13 +1,12 @@
-[cache]
-dir = "~/.cache/pypoetry"
+cache-dir = "/Users/ypg/.cache/pypoetry"
 
 [experimental]
 system-git-client = false
 
 [installer]
-max-workers = null
+max-workers = 4
 modern-installation = true
-no-binary = null
+no-binary = true
 parallel = true
 
 [keyring]
@@ -30,4 +29,3 @@ system-site-packages = false
 
 [warnings]
 export = true
-
