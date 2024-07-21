@@ -2,6 +2,7 @@ alfred
 asdf
 bat
 bitwarden
+black
 docker
 eza
 fd
@@ -11,6 +12,7 @@ gettext
 git-delta
 hadolint
 httpie
+isort
 iterm2
 jsonlint
 just
@@ -21,6 +23,7 @@ olets/tap/zsh-abbr
 openssh
 pipenv
 pipx
+pyright
 rectangle
 ripgrep
 slack
