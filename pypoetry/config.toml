@@ -6,7 +6,7 @@ system-git-client = false
 [installer]
 max-workers = 4
 modern-installation = true
-no-binary = true
+no-binary = ":all:"
 parallel = true
 
 [keyring]
@@ -24,7 +24,7 @@ prompt = "{project_name}-py{python_version}"
 [virtualenvs.options]
 always-copy = false
 no-pip = false
-no-setuptools = false
+no-setuptools = true
 system-site-packages = false
 
 [warnings]
