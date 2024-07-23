@@ -8,8 +8,8 @@ export ABBR_USER_ABBREVIATIONS_FILE=$HOME/dotfiles/zsh-abbr/abbr
 export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_NO_ENV_HINTS=1
 export LANG=en_US.UTF-8
-export POETRY_CONFIG_DIR=$HOME/.config/pypoetry
-export POETRY_DATA_DIR=~/.local/share/pypoetry
+# export POETRY_CONFIG_DIR=$HOME/.config/pypoetry
+# export POETRY_DATA_DIR=~/.local/share/pypoetry
 
 # ----- PROMPT ------
 RESET="%{$(tput sgr0)%}"

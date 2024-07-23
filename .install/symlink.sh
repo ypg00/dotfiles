@@ -26,7 +26,7 @@ create_symlink "$DOTFILES/justfile" "$HOME/justfile"
 create_symlink "$DOTFILES/karabiner" "$CONFIG_DIR/karabiner"
 create_symlink "$DOTFILES/kitty" "$CONFIG_DIR/kitty"
 create_symlink "$DOTFILES/nvim" "$CONFIG_DIR/nvim"
-create_symlink "$DOTFILES/pypoetry" "$CONFIG_DIR/pypoetry"
+# create_symlink "$DOTFILES/pypoetry" "$CONFIG_DIR/pypoetry"
 create_symlink "$DOTFILES/zsh/.zshrc" "$HOME/.zshrc"
 
 
