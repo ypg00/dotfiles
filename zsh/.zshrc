@@ -3,6 +3,9 @@
 # ----- Homebrew -----
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
+# ----- Cargo -----
+. "$HOME/.cargo/env"
+
 # ----- ENV -----
 export ABBR_USER_ABBREVIATIONS_FILE=$HOME/dotfiles/zsh-abbr/abbr
 export HOMEBREW_NO_ANALYTICS=1
