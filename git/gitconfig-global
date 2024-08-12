@@ -1,29 +1,29 @@
 [pull]
-	rebase = true
+    rebase = true
 
 [push]
-	default = current
+    default = current
 
 [remote]
-	pushdefault = origin
+    pushdefault = origin
 
 [core]
-	pager = delta
+    pager = delta
 
 [interactive]
-	diffFilter = delta --color-only
+    diffFilter = delta --color-only
 
 [delta]
-	side-by-side = true
-	navigate = true    # use n and N to move between diff sections
-	dark = true
+    side-by-side = true
+    navigate = true    # use n and N to move between diff sections
+    dark = true
 
 [merge]
-	conflictstyle = diff3
+    conflictstyle = diff3
 
 [diff]
-	colorMoved = default
+    colorMoved = default
 
 [user]
-	name = Yuriy Golota
-	useConfigOnly = true
+    name = Yuriy Golota
+    useConfigOnly = true
