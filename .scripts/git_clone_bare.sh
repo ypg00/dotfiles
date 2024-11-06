@@ -40,6 +40,7 @@ git fetch origin
 
 # Create main worktree
 git worktree add ./dev-tree dev
+git worktree add ./alt-tree main
 
 rm .git # rm .git file since a work-tree has been added
 
