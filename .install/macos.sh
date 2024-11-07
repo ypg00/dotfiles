@@ -1,5 +1,27 @@
 #!/usr/bin/env bash
 
+echo "----- SETUP DIR STRUCTURE -----"
+
+directories=(".asdf" ".aws" ".docker" ".ipython" ".k8slens" ".kube" ".ssh" ".terraform.d" "workspace" "workspace/_dailies" "workspace/dare")
+
+create_directories() {
+  local dirs=("$@")
+
+  for dir in "${dirs[@]}"; do
+    local full_path="$HOME/$dir"
+
+    if [ ! -d "$full_path" ]; then
+      echo "Directory $full_path does not exist. Creating it..."
+      mkdir -p "$full_path"
+    else
+      echo "Directory $full_path already exists."
+    fi
+  done
+}
+
+create_directories "${directories[@]}"
+
+
 echo "----- MACOS SETTINGS -----"
 osascript -e 'tell application "System Preferences" to quit' # close System Preferences panes to prevent overriding
 
@@ -94,4 +116,5 @@ defaults write com.apple.dock wvous-bl-modifier -int 0
 echo "Bottom right screen corner → Start screen saver"
 defaults write com.apple.dock wvous-br-corner -int 5
 defaults write com.apple.dock wvous-br-modifier -int 0
+
 echo "===== Some macOS setting require a restart to take effect ====="
