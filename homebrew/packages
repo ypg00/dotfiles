@@ -12,8 +12,10 @@ gettext
 git-delta
 hadolint
 httpie
+ipython
 isort
 iterm2
+jq
 jsonlint
 just
 karabiner-elements
@@ -31,4 +33,3 @@ slack
 spotify
 tldr
 zsh-completions
-jq
