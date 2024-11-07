@@ -31,14 +31,14 @@ create_symlink "$DOTFILES/zsh/.zshrc" "$HOME/.zshrc"
 
 
 # ===== .gitconfig =====
-cp "$DOTFILES/git/gitconfig-global" "$HOME/.gitconfig"
+# cp "$DOTFILES/git/gitconfig-global" "$HOME/.gitconfig"
 
 # Append contents of gitconfig-github to global .gitconfig
-if [ -f "$DOTFILES/git/gitconfig-github" ]; then
-  cat "$DOTFILES/git/gitconfig-github" >> "$HOME/.gitconfig"
-else
-  echo "File $DOTFILES/git/gitconfig-github not found. Skipping append to $HOME/.gitconfig"
-fi
+# if [ -f "$DOTFILES/git/gitconfig-github" ]; then
+#   cat "$DOTFILES/git/gitconfig-github" >> "$HOME/.gitconfig"
+# else
+#   echo "File $DOTFILES/git/gitconfig-github not found. Skipping append to $HOME/.gitconfig"
+# fi
 
 # Check if directory exists before copying and appending
 if [ -d "$HOME/workspace/dare" ]; then
