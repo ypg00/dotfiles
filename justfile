@@ -5,6 +5,7 @@ SCRIPTS := DOTFILES / ".install"
 
 ASDF := SCRIPTS / "asdf.sh"
 BREW := SCRIPTS / "homebrew.sh"
+MACOS := SCRIPTS / "macos.sh"
 SYMLINK := SCRIPTS / "symlink.sh"
 
 default:
@@ -24,6 +25,7 @@ symlink:
 	{{SYMLINK}}
 
 sync:
+	{{MACOS}}
 	{{BREW}}
 	{{SYMLINK}}
 	{{ASDF}}
