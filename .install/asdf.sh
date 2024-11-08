@@ -25,6 +25,9 @@ if [ ! -f "$DOTFILES_GLOBAL_VERSION" ]; then
     exit 1
 fi
 
+# Install Rosetta for awscli
+softwareupdate --install-rosetta --agree-to-license
+
 # Create an array of all added plugins
 if [ -n "$(ls -A $HOME/.asdf/plugins/ 2>/dev/null)" ]; then
     installed_plugins=($(ls -d $HOME/.asdf/plugins/* | xargs -n 1 basename))
