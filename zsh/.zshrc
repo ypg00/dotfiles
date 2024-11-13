@@ -128,4 +128,5 @@ if type brew &>/dev/null; then
 fi
 
 # ----- abbr -----
-source /opt/homebrew/share/zsh-abbr/zsh-abbr.zsh # Toward end
+# source /opt/homebrew/share/zsh-abbr/zsh-abbr.zsh # Toward end
+source /opt/homebrew/share/zsh-abbr@5/zsh-abbr.zsh
