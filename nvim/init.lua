@@ -587,6 +587,8 @@ require('lazy').setup({
         -- clangd = {},
         -- gopls = {},
         pyright = {},
+        terraformls = {},
+        tflint ={},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -627,9 +629,10 @@ require('lazy').setup({
       vim.list_extend(ensure_installed, {
         'black',
         'isort',
+        'pyright',
         'stylua', -- Used to format Lua code
         'terraform-ls',
-        'pyright',
+        'tflint',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed, auto_undate = false, run_on_start = true }
 
