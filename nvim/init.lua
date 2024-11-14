@@ -628,6 +628,7 @@ require('lazy').setup({
         'black',
         'isort',
         'stylua', -- Used to format Lua code
+        'terraform-ls',
         'pyright',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed, auto_undate = false, run_on_start = true }
@@ -862,7 +863,7 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'python', 'vim', 'vimdoc' },
+      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'python', 'terraform', 'vim', 'vimdoc' },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
