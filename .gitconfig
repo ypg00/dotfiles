@@ -26,5 +26,5 @@
 
 [user]
     name = Yuriy Golota
-    useConfigOnly = false
+    useConfigOnly = true
     email = 98235230+ypg00@users.noreply.github.com
