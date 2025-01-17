@@ -1,7 +1,7 @@
-argo 3.3.9
-awscli 2.19.3
-eksctl 0.176.0
-helm 3.15.1
+argo 3.6.2
+awscli 2.22.28
+eksctl 0.199.0
+helm 3.16.4
 kubectl 1.31.4
 lua 5.4.6
 neovim 0.10.1
