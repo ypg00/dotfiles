@@ -111,6 +111,92 @@ q() {
   $EDITOR +e "$question_file"
 }
 
+# Kubernetes log helper function
+klog() {
+  if [[ $# -lt 2 ]]; then
+    echo "Usage: klog <namespace> <deployment> [search term]"
+    echo "Example: klog argo argo-workflows-controller error"
+    return 1
+  fi
+
+  local namespace="$1"
+  local deployment="$2"
+  local search_term="$3"
+
+  # Verify namespace exists
+  if ! kubectl get namespace "$namespace" &>/dev/null; then
+    echo "Error: Namespace '$namespace' does not exist"
+    return 1
+  fi
+
+  # Get pod name from deployment using app.kubernetes.io/name label first
+  local pod_name
+  pod_name=$(kubectl get pods -n "$namespace" -l "app.kubernetes.io/name=$deployment" -o jsonpath='{.items[0].metadata.name}' 2>/dev/null)
+
+  # If that fails, try getting the selector directly from the deployment
+  if [[ -z "$pod_name" ]]; then
+    local selector
+    selector=$(kubectl get deployment -n "$namespace" "$deployment" -o jsonpath='{.spec.selector.matchLabels}' 2>/dev/null)
+
+    if [[ -n "$selector" ]]; then
+      selector=$(echo "$selector" | tr -d '{}' | tr ',' ' ' | sed 's/:/=/g' | sed 's/"//g')
+      pod_name=$(kubectl get pods -n "$namespace" -l "$selector" -o jsonpath='{.items[0].metadata.name}' 2>/dev/null)
+    fi
+  fi
+
+  if [[ -z "$pod_name" ]]; then
+    echo "Error: No pods found for deployment '$deployment' in namespace '$namespace'"
+    echo "Available deployments in namespace '$namespace':"
+    kubectl get deployments -n "$namespace"
+    echo -e "\nPod labels in this namespace:"
+    kubectl get pods -n "$namespace" --show-labels
+    return 1
+  fi
+
+  # Build the log command
+  local cmd="kubectl logs -n $namespace $pod_name"
+
+  # Add grep if search term is provided
+  if [[ -n "$search_term" ]]; then
+    cmd="$cmd | grep -i '$search_term'"
+  fi
+
+  # Execute the command
+  echo "Executing: $cmd"
+  echo "Pod: $pod_name"
+  echo "---"
+  eval "$cmd"
+}
+
+# Add zsh completion
+_klog() {
+  local state
+
+  _arguments \
+    '1: :->namespace' \
+    '2: :->deployment' \
+    '3: :->search_term'
+
+  case $state in
+    namespace)
+      local namespaces
+      namespaces=($(kubectl get namespaces -o jsonpath='{.items[*].metadata.name}'))
+      _values 'namespaces' $namespaces
+      ;;
+    deployment)
+      local deployments
+      deployments=($(kubectl get deployments -n "$words[2]" -o jsonpath='{.items[*].metadata.name}'))
+      _values 'deployments' $deployments
+      ;;
+    search_term)
+      # Free-form argument, no completion
+      ;;
+  esac
+}
+
+# Register the completion function
+compdef _klog klog
+
 # ----- APPLICATION SPECIFIC SETTINGS -----
 
 # ----- asdf -----
