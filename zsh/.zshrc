@@ -3,6 +3,11 @@
 # ----- Homebrew -----
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
+# ----- zsh -----
+# Initialize zsh completion system
+autoload -Uz compinit
+compinit
+
 # ----- Cargo -----
 # . "$HOME/.cargo/env"
 
