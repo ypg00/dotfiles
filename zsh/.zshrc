@@ -207,7 +207,9 @@ compdef _klog klog
 # ----- asdf -----
 # . /opt/homebrew/opt/asdf/libexec/asdf.sh
 # . /opt/homebrew/opt/asdf/bin/asdf
-export PATH="/opt/homebrew/Cellar/asdf/0.16.4/bin:$PATH"
+# export PATH="/opt/homebrew/Cellar/asdf/0.16.4/bin:$PATH"
+# Add both asdf binary and shims to PATH
+export PATH="/opt/homebrew/Cellar/asdf/0.16.4/bin:$HOME/.asdf/shims:$PATH"
 
 # ----- fzf -----
 eval "$(fzf --zsh)"
