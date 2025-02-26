@@ -2,10 +2,10 @@ argo 3.6.2
 awscli 2.22.28
 eksctl 0.199.0
 helm 3.16.4
-kubectl 1.31.4
+kubectl 1.32.1
 lua 5.4.6
 neovim 0.10.1
 nodejs 22.2.0
 poetry 1.8.5
 python 3.12.7
-terraform 1.10.4
+terraform 1.10.5
