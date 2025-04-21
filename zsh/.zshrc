@@ -173,6 +173,37 @@ klog() {
   eval "$cmd"
 }
 
+# Function to list Kubernetes nodes with instance type and detailed resource usage
+k8s_node_info() {
+  local nodes_file=$(mktemp)
+  local top_file=$(mktemp)
+  kubectl get nodes -o custom-columns="NAME:.metadata.name,INSTANCE-TYPE:.metadata.labels['node\.kubernetes\.io/instance-type'],ZONE:.metadata.labels['topology\.kubernetes\.io/zone']" > $nodes_file
+  kubectl top nodes > $top_file
+  local header=$(head -1 $nodes_file)
+  printf "%-50s %-15s %-15s %-12s %-7s %-15s %-10s\n" "NAME" "INSTANCE-TYPE" "ZONE" "CPU(cores)" "CPU(%)" "MEMORY(bytes)" "MEMORY(%)"
+
+  tail -n +2 $nodes_file | while read -r node_line; do
+    local node_name=$(echo "$node_line" | awk '{print $1}')
+    local instance_type=$(echo "$node_line" | awk '{print $2}')
+    local zone=$(echo "$node_line" | awk '{print $3}')
+    local usage=$(grep "$node_name" $top_file)
+
+    if [[ -n "$usage" ]]; then
+      local cpu_cores=$(echo "$usage" | awk '{print $2}')
+      local cpu_percent=$(echo "$usage" | awk '{print $3}')
+      local mem_bytes=$(echo "$usage" | awk '{print $4}')
+      local mem_percent=$(echo "$usage" | awk '{print $5}')
+      printf "%-50s %-15s %-15s %-12s %-7s %-15s %-10s\n" "$node_name" "$instance_type" "$zone" "$cpu_cores" "$cpu_percent" "$mem_bytes" "$mem_percent"
+    else
+      printf "%-50s %-15s %-15s %-12s %-7s %-15s %-10s\n" "$node_name" "$instance_type" "$zone" "N/A" "N/A" "N/A" "N/A"
+    fi
+  done
+
+  rm $nodes_file $top_file
+}
+
+alias nodes='k8s_node_info'
+
 # Add zsh completion
 _klog() {
   local state
