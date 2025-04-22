@@ -116,6 +116,32 @@ q() {
   $EDITOR +e "$question_file"
 }
 
+# Node information
+k8s_node_info() {
+  local node_data=$(kubectl get nodes --no-headers)
+  local top_data=$(kubectl top nodes)
+  local node_details=$(kubectl get nodes -o custom-columns="NAME:.metadata.name,INSTANCE-TYPE:.metadata.labels['node\.kubernetes\.io/instance-type'],ZONE:.metadata.labels['topology\.kubernetes\.io/zone']")
+  printf "%-50s %-15s %-15s %-12s %-7s %-15s %-10s %-10s\n" "NAME" "INSTANCE-TYPE" "ZONE" "CPU(cores)" "CPU(%)" "MEMORY(bytes)" "MEMORY(%)" "AGE"
+  echo "$node_details" | tail -n +2 | while read -r node_line; do
+    local node_name=$(echo "$node_line" | awk '{print $1}')
+    local instance_type=$(echo "$node_line" | awk '{print $2}')
+    local zone=$(echo "$node_line" | awk '{print $3}')
+    local age=$(echo "$node_data" | grep "$node_name" | awk '{print $4}')
+    local usage=$(echo "$top_data" | grep "$node_name")
+    
+    if [[ -n "$usage" ]]; then
+      local cpu_cores=$(echo "$usage" | awk '{print $2}')
+      local cpu_percent=$(echo "$usage" | awk '{print $3}')
+      local mem_bytes=$(echo "$usage" | awk '{print $4}')
+      local mem_percent=$(echo "$usage" | awk '{print $5}')
+      printf "%-50s %-15s %-15s %-12s %-7s %-15s %-10s %-10s\n" "$node_name" "$instance_type" "$zone" "$cpu_cores" "$cpu_percent" "$mem_bytes" "$mem_percent" "$age"
+    else
+      printf "%-50s %-15s %-15s %-12s %-7s %-15s %-10s %-10s\n" "$node_name" "$instance_type" "$zone" "N/A" "N/A" "N/A" "N/A" "$age"
+    fi
+  done
+}
+alias nodes='k8s_node_info'
+
 # Kubernetes log helper function
 klog() {
   if [[ $# -lt 2 ]]; then
@@ -128,17 +154,13 @@ klog() {
   local deployment="$2"
   local search_term="$3"
 
-  # Verify namespace exists
   if ! kubectl get namespace "$namespace" &>/dev/null; then
     echo "Error: Namespace '$namespace' does not exist"
     return 1
   fi
 
-  # Get pod name from deployment using app.kubernetes.io/name label first
   local pod_name
   pod_name=$(kubectl get pods -n "$namespace" -l "app.kubernetes.io/name=$deployment" -o jsonpath='{.items[0].metadata.name}' 2>/dev/null)
-
-  # If that fails, try getting the selector directly from the deployment
   if [[ -z "$pod_name" ]]; then
     local selector
     selector=$(kubectl get deployment -n "$namespace" "$deployment" -o jsonpath='{.spec.selector.matchLabels}' 2>/dev/null)
@@ -158,52 +180,15 @@ klog() {
     return 1
   fi
 
-  # Build the log command
   local cmd="kubectl logs -n $namespace $pod_name"
-
-  # Add grep if search term is provided
   if [[ -n "$search_term" ]]; then
     cmd="$cmd | grep -i '$search_term'"
   fi
-
-  # Execute the command
   echo "Executing: $cmd"
   echo "Pod: $pod_name"
   echo "---"
   eval "$cmd"
 }
-
-# Function to list Kubernetes nodes with instance type and detailed resource usage
-k8s_node_info() {
-  local nodes_file=$(mktemp)
-  local top_file=$(mktemp)
-  kubectl get nodes -o custom-columns="NAME:.metadata.name,INSTANCE-TYPE:.metadata.labels['node\.kubernetes\.io/instance-type'],ZONE:.metadata.labels['topology\.kubernetes\.io/zone']" > $nodes_file
-  kubectl top nodes > $top_file
-  local header=$(head -1 $nodes_file)
-  printf "%-50s %-15s %-15s %-12s %-7s %-15s %-10s\n" "NAME" "INSTANCE-TYPE" "ZONE" "CPU(cores)" "CPU(%)" "MEMORY(bytes)" "MEMORY(%)"
-
-  tail -n +2 $nodes_file | while read -r node_line; do
-    local node_name=$(echo "$node_line" | awk '{print $1}')
-    local instance_type=$(echo "$node_line" | awk '{print $2}')
-    local zone=$(echo "$node_line" | awk '{print $3}')
-    local usage=$(grep "$node_name" $top_file)
-
-    if [[ -n "$usage" ]]; then
-      local cpu_cores=$(echo "$usage" | awk '{print $2}')
-      local cpu_percent=$(echo "$usage" | awk '{print $3}')
-      local mem_bytes=$(echo "$usage" | awk '{print $4}')
-      local mem_percent=$(echo "$usage" | awk '{print $5}')
-      printf "%-50s %-15s %-15s %-12s %-7s %-15s %-10s\n" "$node_name" "$instance_type" "$zone" "$cpu_cores" "$cpu_percent" "$mem_bytes" "$mem_percent"
-    else
-      printf "%-50s %-15s %-15s %-12s %-7s %-15s %-10s\n" "$node_name" "$instance_type" "$zone" "N/A" "N/A" "N/A" "N/A"
-    fi
-  done
-
-  rm $nodes_file $top_file
-}
-
-alias nodes='k8s_node_info'
-
 # Add zsh completion
 _klog() {
   local state
@@ -225,11 +210,9 @@ _klog() {
       _values 'deployments' $deployments
       ;;
     search_term)
-      # Free-form argument, no completion
       ;;
   esac
 }
-
 # Register the completion function
 compdef _klog klog
 
