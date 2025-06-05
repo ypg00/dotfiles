@@ -8,5 +8,5 @@ neovim 0.10.1
 nodejs 22.2.0
 poetry 1.8.5
 python 3.12.7
-terraform 1.11.2
+terraform 1.12.1
 postgres 16.6
