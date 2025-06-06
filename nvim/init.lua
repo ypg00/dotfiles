@@ -634,9 +634,10 @@ require('lazy').setup({
         'terraform-ls',
         'tflint',
       })
-      require('mason-tool-installer').setup { ensure_installed = ensure_installed, auto_undate = false, run_on_start = true }
+      require('mason-tool-installer').setup { ensure_installed = ensure_installed, auto_update = false, run_on_start = true }
 
       require('mason-lspconfig').setup {
+        automatic_installation = false,
         handlers = {
           function(server_name)
             local server = servers[server_name] or {}
@@ -680,8 +681,8 @@ require('lazy').setup({
       formatters_by_ft = {
         lua = { 'stylua' },
         -- Conform can also run multiple formatters sequentially
-        python = { 'isort', 'black', 'pyright' },
-        terraform = { 'terraformls', 'tflint' },
+        python = { 'isort', 'black' },
+        terraform = { 'terraform-ls' },
         --
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is found.
