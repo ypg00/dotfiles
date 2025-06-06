@@ -450,7 +450,6 @@ require('lazy').setup({
 
       -- Enable the following language servers
       local servers = {
-        pyright = {},
         lua_ls = {
           settings = {
             Lua = {
@@ -460,6 +459,8 @@ require('lazy').setup({
             },
           },
         },
+        pyright = {},
+        terraformls = {},
       }
 
       -- Setup Mason first
@@ -471,9 +472,8 @@ require('lazy').setup({
         'isort',
         'pyright',
         'stylua',
-        -- Remove terraform tools for now since they're causing issues
-        -- 'terraform-ls',
-        -- 'tflint',
+        'terraform-ls',
+        'tflint',
       }
 
       require('mason-tool-installer').setup {
@@ -484,8 +484,12 @@ require('lazy').setup({
 
       -- Setup mason-lspconfig WITHOUT automatic features
       require('mason-lspconfig').setup {
-        ensure_installed = { 'pyright', 'lua_ls' },
-        -- Completely disable automatic installation and handlers
+        ensure_installed = {
+          'lua_ls',
+          'pyright',
+          'terraformls',
+          'tflint',
+        },
       }
 
       -- Manually setup each server
@@ -575,9 +579,9 @@ require('lazy').setup({
       -- end,
       formatters_by_ft = {
         lua = { 'stylua' },
-        -- Conform can also run multiple formatters sequentially
         python = { 'isort', 'black' },
-        terraform = { 'terraform-ls' },
+        terraform = { 'terraform_fmt' },
+        -- terraform = { 'terraform-ls' },
         --
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is found.
@@ -773,7 +777,7 @@ require('lazy').setup({
         'luadoc',
         'markdown',
         'python',
-        -- Remove 'terraform' temporarily due to download issues
+        'terraform',
         'vim',
         'vimdoc',
       },
