@@ -10,3 +10,4 @@ poetry 1.8.5
 python 3.13.9
 terraform 1.13.4
 postgres 16.6
+uv 0.9.8
