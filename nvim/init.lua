@@ -19,7 +19,7 @@ local function toggle_numbers()
     vim.opt.relativenumber = true
   end
 end
-vim.keymap.set('n', '<Space>n', toggle_numbers, { desc = 'Toggle line [N]umbers' })
+vim.keymap.set('n', '<Space>n', toggle_numbers, { desc = 'Toggle line [n]umbers' })
 
 -- Do not wrap text onto what looks like a new line
 vim.opt.wrap = false
