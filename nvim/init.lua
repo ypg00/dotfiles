@@ -486,6 +486,13 @@ require('lazy').setup({
             },
           },
         },
+        ruff_lsp = {
+          settings = {
+            python = {
+              pythonPath = get_python_path(),
+            },
+          },
+        },
         terraformls = {},
       }
 
@@ -494,9 +501,8 @@ require('lazy').setup({
 
       -- Install tools via mason-tool-installer
       local ensure_installed = {
-        'black',
-        'isort',
         'pyright',
+        'ruff',
         'stylua',
         'terraform-ls',
         'tflint',
@@ -513,6 +519,7 @@ require('lazy').setup({
         ensure_installed = {
           'lua_ls',
           'pyright',
+          'ruff_lsp',
           'terraformls',
           'tflint',
         },
@@ -605,7 +612,7 @@ require('lazy').setup({
       -- end,
       formatters_by_ft = {
         lua = { 'stylua' },
-        python = { 'isort', 'black' },
+        python = { 'ruff_format', 'ruff_organize_imports' },
         terraform = { 'terraform_fmt' },
         -- terraform = { 'terraform-ls' },
         --
