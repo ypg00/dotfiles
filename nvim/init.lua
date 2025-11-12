@@ -448,6 +448,21 @@ require('lazy').setup({
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
+      local function get_python_path()
+        -- Check for .venv in current directory (uv default)
+        local venv = vim.fn.getcwd() .. '/.venv'
+        if vim.fn.isdirectory(venv) == 1 then
+          return venv .. '/bin/python'
+        end
+        -- Fall back to asdf-managed python
+        local asdf_python = vim.fn.expand '~/.asdf/shims/python'
+        if vim.fn.executable(asdf_python) == 1 then
+          return asdf_python
+        end
+        -- Final fallback to system python
+        return vim.fn.exepath 'python3' or vim.fn.exepath 'python' or 'python'
+      end
+
       -- Enable the following language servers
       local servers = {
         lua_ls = {
@@ -459,7 +474,18 @@ require('lazy').setup({
             },
           },
         },
-        pyright = {},
+        pyright = {
+          settings = {
+            python = {
+              pythonPath = get_python_path(),
+              analysis = {
+                autoSearchPaths = true,
+                diagnosticMode = 'workspace',
+                useLibraryCodeForTypes = true,
+              },
+            },
+          },
+        },
         terraformls = {},
       }
 
