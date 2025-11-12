@@ -87,6 +87,14 @@ vim.opt.scrolloff = 10
 vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
+-- filetype detection
+vim.filetype.add {
+  extension = {
+    tf = 'terraform',
+    tfvars = 'terraform-vars',
+  },
+}
+
 -- Quick Fix keymaps
 function ToggleQuickfix()
   local quickfix_open = false
@@ -493,7 +501,13 @@ require('lazy').setup({
             },
           },
         },
-        terraformls = {},
+        terraformls = {
+          cmd = { 'terraform-ls', 'serve' },
+          filetypes = { 'terraform', 'terraform-vars' },
+          root_dir = function(fname)
+            return require('lspconfig.util').root_pattern('.terraform', '.git')(fname)
+          end,
+        },
       }
 
       -- Setup Mason first
