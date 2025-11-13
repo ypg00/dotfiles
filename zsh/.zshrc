@@ -225,6 +225,9 @@ compdef _klog klog
 # Add both asdf binary and shims to PATH
 export PATH="/opt/homebrew/Cellar/asdf/0.16.5/bin:$HOME/.asdf/shims:$PATH"
 
+# ----- uv -----
+export PATH="$HOME/.local/bin:$PATH"
+
 # ----- fzf -----
 eval "$(fzf --zsh)"
 set rtp+=/opt/homebrew/opt/fzf # for Vim
