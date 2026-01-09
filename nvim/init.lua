@@ -494,7 +494,7 @@ require('lazy').setup({
             },
           },
         },
-        ruff_lsp = {
+        ruff = {
           settings = {
             python = {
               pythonPath = get_python_path(),
@@ -533,7 +533,7 @@ require('lazy').setup({
         ensure_installed = {
           'lua_ls',
           'pyright',
-          'ruff_lsp',
+          'ruff',
           'terraformls',
           'tflint',
         },
