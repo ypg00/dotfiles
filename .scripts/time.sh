@@ -14,3 +14,4 @@ get_emoji() {
 echo "Singapore      (SGT):  $(TZ='Asia/Singapore' date +'%d/%m/%Y  %H:%M:%S')  $(get_emoji $(TZ='Asia/Singapore' date +'%k'))"
 echo "Raleigh         (ET):  $(TZ='America/New_York' date +'%d/%m/%Y  %H:%M:%S')  $(get_emoji $(TZ='America/New_York' date +'%k'))"
 echo "Heilbronn (CET/CEST):  $(TZ='Europe/Berlin' date +'%d/%m/%Y  %H:%M:%S')  $(get_emoji $(TZ='Europe/Berlin' date +'%k'))"
+echo "UTC            (UTC):  $(TZ='UTC' date +'%d/%m/%Y  %H:%M:%S')  $(get_emoji $(TZ='UTC' date +'%k'))"
